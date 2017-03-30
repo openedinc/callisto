@@ -21,3 +21,7 @@ Callisto will stick very closely to the generated Rails scaffolding for the mode
 # Populating Caliper Events
 
 To store Caliper events in Callisto use the CaliperEvent model Create method: 
+
+```
+  curl --data "payload={<JSON-LD for event}" https://<hostname>/caliper-event/create
+```
