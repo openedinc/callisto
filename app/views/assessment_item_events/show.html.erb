@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Actorid:</strong>
+  <%= @assessment_item_event.actorId %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @assessment_item_event.action %>
+</p>
+
+<p>
+  <strong>Objectid:</strong>
+  <%= @assessment_item_event.objectId %>
+</p>
+
+<p>
+  <strong>Maxscore:</strong>
+  <%= @assessment_item_event.maxScore %>
+</p>
+
+<p>
+  <strong>Ispartof:</strong>
+  <%= @assessment_item_event.isPartOf %>
+</p>
+
+<p>
+  <strong>Generatedid:</strong>
+  <%= @assessment_item_event.generatedId %>
+</p>
+
+<p>
+  <strong>Generatedcount:</strong>
+  <%= @assessment_item_event.generatedCount %>
+</p>
+
+<p>
+  <strong>Generatedstartedattime:</strong>
+  <%= @assessment_item_event.generatedStartedAtTime %>
+</p>
+
+<%= link_to 'Edit', edit_assessment_item_event_path(@assessment_item_event) %> |
+<%= link_to 'Back', assessment_item_events_path %>

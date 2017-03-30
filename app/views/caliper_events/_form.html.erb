@@ -1,0 +1,27 @@
+<%= form_for(caliper_event) do |f| %>
+  <% if caliper_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(caliper_event.errors.count, "error") %> prohibited this caliper_event from being saved:</h2>
+
+      <ul>
+      <% caliper_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :payload %>
+    <%= f.text_field :payload %>
+  </div>
+
+  <div class="field">
+    <%= f.label :time %>
+    <%= f.datetime_select :time %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+class CaliperEvent < ApplicationRecord
+end

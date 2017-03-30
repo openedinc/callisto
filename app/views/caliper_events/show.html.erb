@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Payload:</strong>
+  <%= @caliper_event.payload %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @caliper_event.time %>
+</p>
+
+<%= link_to 'Edit', edit_caliper_event_path(@caliper_event) %> |
+<%= link_to 'Back', caliper_events_path %>

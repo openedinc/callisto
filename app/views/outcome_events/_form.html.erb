@@ -1,0 +1,62 @@
+<%= form_for(outcome_event) do |f| %>
+  <% if outcome_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(outcome_event.errors.count, "error") %> prohibited this outcome_event from being saved:</h2>
+
+      <ul>
+      <% outcome_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :actorId %>
+    <%= f.text_field :actorId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :action %>
+    <%= f.text_field :action %>
+  </div>
+
+  <div class="field">
+    <%= f.label :objectId %>
+    <%= f.text_field :objectId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :assignableId %>
+    <%= f.text_field :assignableId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :assignableMaxScore %>
+    <%= f.number_field :assignableMaxScore %>
+  </div>
+
+  <div class="field">
+    <%= f.label :assignableIsPartOf %>
+    <%= f.text_field :assignableIsPartOf %>
+  </div>
+
+  <div class="field">
+    <%= f.label :generatedId %>
+    <%= f.text_field :generatedId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :generatedTotalScore %>
+    <%= f.number_field :generatedTotalScore %>
+  </div>
+
+  <div class="field">
+    <%= f.label :generatedScoredBy %>
+    <%= f.text_field :generatedScoredBy %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

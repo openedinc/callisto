@@ -1,0 +1,2 @@
+module OutcomeEventsHelper
+end
