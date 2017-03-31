@@ -26,5 +26,5 @@ To store Caliper events in Callisto use the CaliperEvent model Create method:
   curl --data "payload={
   "sensor": "https://<<Caliper sensor site URL>",
   "sendTime":"2017-03-29T00:29:26.154Z",
-  "data":"[{event 1},{event 2}]}" https://<hostname>/caliper-event/create
+  "data":"[{event 1},{event 2}]}" https://<hostname>/caliper_events/create
 ```
