@@ -1,6 +1,9 @@
 class AssessmentItemEventsController < ApplicationController
   before_action :set_assessment_item_event, only: [:show, :edit, :update, :destroy]
 
+  def load_events
+  end
+
   # GET /assessment_item_events
   # GET /assessment_item_events.json
   def index
