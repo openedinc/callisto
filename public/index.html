@@ -1,4 +1,4 @@
-<h1>Callisto Vision</h1>
+<h2>Callisto Overview</h2>
 <p>
 Most Learning Record Stores (LRSes) that support IMS Global Caliper (or XAPI)
 today just store the JSONB of the event payload in some fashion. There is no
@@ -11,12 +11,22 @@ event types into their own structured forms and then exposes specific REST
 queries for each event type. It is our hope that the Callisto query web Services
 eventually become extensions to the IMS Global Caliper standard.
 </p>
-<h1>Architecture</h1>
+<h2>Code and Architecture</h2>
 
-Callisto is a very simple Ruby on Rails app with models and controllers for (eventually) all important Caliper events likely to be used for query. It is written for Postgres due to PG's excellent JSONB and fulltext support which are likely to be helpful. It could be ported to other relational databases. Given its focus on web service query, Callisto will stick very closely to the generated Rails scaffolding for the models for each Caliper event.
+<p>Callisto is a very simple Ruby on Rails app with models and controllers for
+(eventually) all important Caliper events likely to be used for query. It is written
+for Postgres due to PG's excellent JSONB and fulltext support which are likely to be helpful.
+It could be ported to other relational databases. Given its focus on web service query,
+Callisto will stick very closely to the generated Rails scaffolding for the models for each Caliper event.
+</p>
+<p>
+Code is available on <a href="http://github.com/openedinc/callisto">GitGub</a>
+</p>
 
-<h1>Endpoints</h1>
-<h2>Populating Caliper Events</h2>
+<p>All Callisto code is open source <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p>
+
+<h2>Endpoints</h2>
+<h3>Populating Caliper Events</h3>
 <p>
 To store Caliper events in Callisto use the CaliperEvent model Create method:
 </p>
@@ -28,9 +38,7 @@ To store Caliper events in Callisto use the CaliperEvent model Create method:
   "data":"[{event 1},{event 2}]}" https://opencallisto.herokuapp.com/caliper_events/create
 </code>
 </p>
-<h1>Credits</h1>
-Callisto is a project from OpenEd, Inc., a division of ACT Assessment Technologies.
+<h2>Credits</h2>
+<p>Callisto is a project from OpenEd, Inc., a division of ACT Assessment Technologies.</p>
 
-It is available via <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
-
-Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.
+<p>Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.</p>
