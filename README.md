@@ -28,3 +28,9 @@ To store Caliper events in Callisto use the CaliperEvent model Create method:
   "sendTime":"2017-03-29T00:29:26.154Z",
   "data":"[{event 1},{event 2}]}" https://opencallisto.herokuapp.com/caliper_events/create
 ```
+
+# Credits
+
+Callisto is a project from [OpenEd, Inc.](http://www.opened.com), a division of ACT Assessment Technologies.
+
+Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.
