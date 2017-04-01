@@ -12,16 +12,16 @@ class AssessmentItemEventsController < ApplicationController
   # GET /assessment_item_events
   # GET /assessment_item_events.json
   # allow query by follow params:
-  #     "actorId"
+  #     "actor_id"
   #     "action"
-  #     "objectId"
-  #     "generatedId"
+  #     "object_id"
+  #     "generated_id"
   def index
     @events=AssessmentItemEvent.scoped
-    @events=AssessmentItem.where(actorId: params[:actorId]) if params[:actorId].present?
+    @events=AssessmentItem.where(actorId: params[:actorId]) if params[:actor_id].present?
     @events=AssessmentItem.where(action: params[:action]) if params[:action].present?
-    @events=AssessmentItem.where(objectId: params[:objectId]) if params[:objectId].present?
-    @events=AssessmentItem.where(generatedId: params[:generatedId]) if params[:generatedId].present?
+    @events=AssessmentItem.where(objectId: params[:objectId]) if params[:object_id].present?
+    @events=AssessmentItem.where(generatedId: params[:generatedId]) if params[:generated_id].present?
 
   end
 

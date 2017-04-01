@@ -8,7 +8,7 @@ into student usage patterns based on the events.
 Callisto provides the same generic event store. But it decomposes the various
 event types into their own structured forms and then exposes specific REST
 queries for each event type. It is our hope that the Callisto query web Services
-eventually become extensions to the IMS Global Caliper standard. 
+eventually become extensions to the IMS Global Caliper standard.
 
 # Code and Architecture
 
@@ -26,18 +26,145 @@ All Callisto code is open source via [Apache License 2.0](https://www.apache.org
 
 ## Populating Caliper Events
 
-To store Caliper events in Callisto use the CaliperEvent model Create method: 
+To store Caliper events in Callisto use the CaliperEvent model Create method:
 
 ```
   curl --data "payload={
   "sensor": "https://<<Caliper sensor site URL>",
   "sendTime":"2017-03-29T00:29:26.154Z",
-  "data":"[{event 1},{event 2}]}" https://opencallisto.herokuapp.com/caliper_events/create
+  "data":"[{event 1 in IMS Caliper JSON-LD format},{event 2 in Caliper JSON-LD},...]}" https://opencallisto.org/caliper_events/create
+```
+
+### Sample Caliper Event
+
+Below is a sample Caliper event (specifically AssessmentItemCompleted) from the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures/blob/master/src/test/resources/fixtures/caliperAssessmentItemCompletedEvent.json)
+
+``` json
+  {
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+    "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
+    "actor": {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@id": "https://example.edu/user/554433",
+      "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+      "name": null,
+      "description": null,
+      "extensions": {},
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": "2015-09-02T11:30:00.000Z"
+    },
+    "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed",
+    "object": {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001",
+      "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItem",
+      "name": "Assessment Item 1",
+      "description": null,
+      "objectType": [],
+      "alignedLearningObjective": [],
+      "keywords": [],
+      "isPartOf": {
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+        "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
+        "name": "American Revolution - Key Figures Assessment",
+        "description": null,
+        "objectType": [],
+        "alignedLearningObjective": [],
+        "keywords": [],
+        "isPartOf": null,
+        "extensions": {},
+        "dateCreated": "2015-08-01T06:00:00.000Z",
+        "dateModified": "2015-09-02T11:30:00.000Z",
+        "datePublished": "2015-08-15T09:30:00.000Z",
+        "version": "1.0",
+        "dateToActivate": "2015-08-16T05:00:00.000Z",
+        "dateToShow": "2015-08-16T05:00:00.000Z",
+        "dateToStartOn": "2015-08-16T05:00:00.000Z",
+        "dateToSubmit": "2015-09-28T11:59:59.000Z",
+        "maxAttempts": 2,
+        "maxSubmits": 2,
+        "maxScore": 3.0
+      },
+      "extensions": {},
+      "dateCreated": null,
+      "dateModified": null,
+      "datePublished": null,
+      "version": "1.0",
+      "dateToActivate": null,
+      "dateToShow": null,
+      "dateToStartOn": null,
+      "dateToSubmit": null,
+      "maxAttempts": 2,
+      "maxSubmits": 2,
+      "maxScore": 1.0,
+      "isTimeDependent": false
+    },
+    "target": null,
+    "generated": {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001",
+      "@type": "http://purl.imsglobal.org/caliper/v1/FillinBlankResponse",
+      "name": null,
+      "description": null,
+      "extensions": {},
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": null,
+      "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+      "actor": "https://example.edu/user/554433",
+      "attempt": {
+        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+        "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/attempt/789",
+        "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
+        "name": null,
+        "description": null,
+        "extensions": {},
+        "dateCreated": "2015-08-01T06:00:00.000Z",
+        "dateModified": null,
+        "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
+        "actor": "https://example.edu/user/554433",
+        "count": 1,
+        "startedAtTime": "2015-09-15T10:15:00.000Z",
+        "endedAtTime": null,
+        "duration": null
+      },
+      "values": ["2 July 1776"],
+      "startedAtTime": "2015-09-15T10:15:00.000Z",
+      "endedAtTime": null,
+      "duration": null
+    },
+    "eventTime": "2015-09-15T10:15:00.000Z",
+    "edApp": {
+      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+      "@id": "https://example.com/super-assessment-tool",
+      "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
+      "name": "Super Assessment Tool",
+      "description": null,
+      "extensions": {},
+      "dateCreated": "2015-08-01T06:00:00.000Z",
+      "dateModified": null
+    }
+  }
 ```
 
 ## Querying for Event Types
 
-### AssessmentEvents
+Once Caliper events are stored with the "caliper_events/create" method they can be retrieved using various index methods for each event type.
+
+### AssessmentItemEvents
+
+Various queries on AssessmentItemEvents can be performed with the assessment_item_events.json endpoint.
+
+Parameters include:
+* actor_id - the ID of the assessment item taker, e.g. "https://example.edu/user/554433"
+* action_id - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed"
+* object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
+* generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
+
+Example REST call:
+```
+  curl https://opencallisto.org/assessment_item_events.json?actor_id=https://example.edu/user/554433
+```
 
 ### OutcomeEvents
 
