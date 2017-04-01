@@ -2,12 +2,27 @@ class AssessmentItemEventsController < ApplicationController
   before_action :set_assessment_item_event, only: [:show, :edit, :update, :destroy]
 
   def load_events
+    events=CaliperEvent.all
+    events.each do |e|
+      puts "Event: #{e}"
+
+    end
   end
 
   # GET /assessment_item_events
   # GET /assessment_item_events.json
+  # allow query by follow params:
+  #     "actorId"
+  #     "action"
+  #     "objectId"
+  #     "generatedId"
   def index
-    @assessment_item_events = AssessmentItemEvent.all
+    @events=AssessmentItemEvent.scoped
+    @events=AssessmentItem.where(actorId: params[:actorId]) if params[:actorId].present?
+    @events=AssessmentItem.where(action: params[:action]) if params[:action].present?
+    @events=AssessmentItem.where(objectId: params[:objectId]) if params[:objectId].present?
+    @events=AssessmentItem.where(generatedId: params[:generatedId]) if params[:generatedId].present?
+
   end
 
   # GET /assessment_item_events/1
