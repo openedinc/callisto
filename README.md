@@ -22,7 +22,9 @@ Code is available on [GitHub](http://github.com/openedinc/callisto)
 
 All Callisto code is open source via [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-# Populating Caliper Events
+# Endpoints
+
+## Populating Caliper Events
 
 To store Caliper events in Callisto use the CaliperEvent model Create method: 
 
@@ -32,6 +34,12 @@ To store Caliper events in Callisto use the CaliperEvent model Create method:
   "sendTime":"2017-03-29T00:29:26.154Z",
   "data":"[{event 1},{event 2}]}" https://opencallisto.herokuapp.com/caliper_events/create
 ```
+
+## Querying for Event Types
+
+### AssessmentEvents
+
+### OutcomeEvents
 
 # Credits
 
