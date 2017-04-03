@@ -7,7 +7,7 @@ into student usage patterns based on the events.
 
 Callisto provides the same generic event store. But it decomposes the various
 event types into their own structured forms and then exposes specific REST
-queries for each event type. It is our hope that the Callisto query web Services
+queries for each event type. It is our hope that the Callisto query web services
 eventually become extensions to the IMS Global Caliper standard.
 
 # Code and Architecture
