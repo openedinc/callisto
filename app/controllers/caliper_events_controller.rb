@@ -1,6 +1,6 @@
 class CaliperEventsController < ApplicationController
   before_action :set_caliper_event, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token, if: :api_request?
   # GET /caliper_events
   # GET /caliper_events.json
   def index
@@ -24,7 +24,7 @@ class CaliperEventsController < ApplicationController
   # POST /caliper_events
   # POST /caliper_events.json
   def create
-    @caliper_event = CaliperEvent.new(caliper_event_params)
+    @caliper_event = CaliperEvent.new(payload: caliper_event_params['payload'])
 
     respond_to do |format|
       if @caliper_event.save
@@ -67,8 +67,12 @@ class CaliperEventsController < ApplicationController
       @caliper_event = CaliperEvent.find(params[:id])
     end
 
+    def api_request?
+      request.format.json? || request.format.xml?
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def caliper_event_params
-      params.require(:caliper_event).permit(:payload, :time)
+      params.require(:caliper_event)
     end
 end
