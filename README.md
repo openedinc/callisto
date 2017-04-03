@@ -161,12 +161,26 @@ Parameters include:
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
 * generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
 
-Example REST call:
+Example REST call (all assessment item events for specified user):
 ```
   curl https://opencallisto.org/assessment_item_events.json?actor_id=https://example.edu/user/554433
 ```
 
 ### OutcomeEvents
+
+Various queries on OutcomeEvents can be performed with the outcome_events.json endpoint.
+
+Parameters include:
+* actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
+* action_id - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Graded"
+* object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
+* object_assignable - the ID of the assessment, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/0011"
+* generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+
+Example REST call (all outcome events for specified user) :
+```
+  curl https://opencallisto.org/outcome_events.json?actor_id=https://example.edu/user/554433
+```
 
 # Credits
 
