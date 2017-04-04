@@ -1,4 +1,11 @@
-# Callisto Vision
+# Callisto 
+
+*A simple, queryable [Caliper](http://www.imsglobal.org/activity/caliperram) event store.*
+
+[![Build Status](https://travis-ci.org/openedinc/callisto.svg?branch=master)](https://travis-ci.org/openedinc/callisto)
+[![Code Climate](https://codeclimate.com/github/openedinc/callisto.png)](https://codeclimate.com/github/openedinc/callisto)
+
+## Callisto Vision
 
 Most Learning Record Stores (LRSes) that support IMS Global Caliper (or XAPI) today
 just store the JSONB of the event payload in some fashion.  There is no built-in
@@ -10,7 +17,7 @@ event types into their own structured forms and then exposes specific REST
 queries for each event type. It is our hope that the Callisto query web services
 eventually become extensions to the IMS Global Caliper standard.
 
-# Code and Architecture
+## Code and Architecture
 
 Callisto is a very simple Ruby on Rails app with models and controllers for
 (eventually) all important Caliper events likely to be used for query. It is written
@@ -22,13 +29,13 @@ Code is available on [GitHub](http://github.com/openedinc/callisto)
 
 All Callisto code is open source via [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-# Endpoints
+## Endpoints
 
-## Populating Caliper Events
+### Populating Caliper Events
 
 To store Caliper events in Callisto use the CaliperEvent model Create method:
 
-```
+```sh
   curl --data "payload={
   "sensor": "https://<<Caliper sensor site URL>",
   "sendTime":"2017-03-29T00:29:26.154Z",
@@ -39,7 +46,7 @@ To store Caliper events in Callisto use the CaliperEvent model Create method:
 
 Below is a sample Caliper event (specifically AssessmentItemCompleted) from the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures/blob/master/src/test/resources/fixtures/caliperAssessmentItemCompletedEvent.json)
 
-``` json
+```json
   {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
@@ -147,7 +154,7 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
   }
 ```
 
-## Querying for Event Types
+### Querying for Event Types
 
 Once Caliper events are stored with the "caliper_events/create" method they can be retrieved using various index methods for each event type.
 
@@ -161,8 +168,9 @@ Parameters include:
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
 * generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
 
+
 Example REST call (all assessment item events for specified user):
-```
+```sh
   curl https://opencallisto.org/assessment_item_events.json?actor_id=https://example.edu/user/554433
 ```
 

@@ -1,0 +1,14 @@
+language: ruby
+dist: trusty
+sudo: required
+rvm:
+  - 2.3.4
+  - 2.4.1
+cache: bundler
+addons:
+  postgresql: "9.5"
+install:
+  - bin/bundle --without development
+before_script:
+  - bin/rails db:create db:migrate
+script: bin/rails test
