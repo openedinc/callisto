@@ -1,4 +1,4 @@
-# Callisto 
+# Callisto
 
 *A simple, queryable [Caliper](http://www.imsglobal.org/activity/caliperram) event store.*
 
@@ -10,7 +10,7 @@
 Most Learning Record Stores (LRSes) that support IMS Global Caliper (or XAPI) today
 just store the JSONB of the event payload in some fashion.  There is no built-in
 query capability. You must write rather elaborate JSON queries to gain insight
-into student usage patterns based on the events.  
+into student usage patterns based on the events.
 
 Callisto provides the same generic event store. But it decomposes the various
 event types into their own structured forms and then exposes specific REST
@@ -179,6 +179,7 @@ Example REST call (all assessment item events for specified user):
 Various queries on OutcomeEvents can be performed with the outcome_events.json endpoint.
 
 Parameters include:
+
 * actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
 * action_id - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Graded"
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
