@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :media_events
   resources :caliper_events
   resources :outcome_events
   resources :assessment_item_events

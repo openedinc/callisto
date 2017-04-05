@@ -10,7 +10,7 @@
 Most Learning Record Stores (LRSes) that support IMS Global Caliper (or XAPI) today
 just store the JSONB of the event payload in some fashion.  There is no built-in
 query capability. You must write rather elaborate JSON queries to gain insight
-into student usage patterns based on the events.
+into student usage patterns based on the events.  
 
 Callisto provides the same generic event store. But it decomposes the various
 event types into their own structured forms and then exposes specific REST
@@ -35,7 +35,7 @@ All Callisto code is open source via [Apache License 2.0](https://www.apache.org
 
 To store Caliper events in Callisto use the CaliperEvent model Create method:
 
-```sh
+```
   curl --data "payload={
   "sensor": "https://<<Caliper sensor site URL>",
   "sendTime":"2017-03-29T00:29:26.154Z",
@@ -179,16 +179,29 @@ Example REST call (all assessment item events for specified user):
 Various queries on OutcomeEvents can be performed with the outcome_events.json endpoint.
 
 Parameters include:
-
 * actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
-* action_id - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Graded"
-* object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
+* action_id - what happened with the assessment, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Graded"
+* object_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
 * object_assignable - the ID of the assessment, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/0011"
 * generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
 
 Example REST call (all outcome events for specified user) :
 ```
   curl https://opencallisto.org/outcome_events.json?actor_id=https://example.edu/user/554433
+```
+
+### MediaEvents
+
+Various queries on MediaEvents can be performed with the media_events.json endpoint.
+
+Parameters include:
+* actor_id - the ID of the media viewer, e.g. "https://example.edu/user/554433"
+* action_id - what happened with the video, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
+* object_id - the URL of the video itself, e.g. "https://example.com/super-media-tool/video/1225"
+
+Example REST call (all outcome events for specified user) :
+```
+  curl https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
 ```
 
 # Credits

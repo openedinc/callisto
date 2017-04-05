@@ -1,0 +1,2 @@
+class MediaEvent < ApplicationRecord
+end
