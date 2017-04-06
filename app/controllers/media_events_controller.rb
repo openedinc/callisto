@@ -4,7 +4,11 @@ class MediaEventsController < ApplicationController
   # GET /media_events
   # GET /media_events.json
   def index
-    @media_events = MediaEvent.all
+    @media_events = MediaEvent.search(
+      actor_id: params[:actor_id],
+      action: params[:action],
+      object_id: params[:object_id]
+    )
   end
 
   # GET /media_events/1

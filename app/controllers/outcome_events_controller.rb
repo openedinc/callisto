@@ -3,8 +3,20 @@ class OutcomeEventsController < ApplicationController
 
   # GET /outcome_events
   # GET /outcome_events.json
+=begin
+Parameters include:
+* actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
+* object_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
+* object_assignable - the ID of the assessment, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/0011"
+* generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+=end
   def index
-    @outcome_events = OutcomeEvent.all
+    @outcome_events = OutcomeEvent.search(
+      actor_id: params[:actor_id],
+      object_id: params[:object_id],
+      object_assignable: params[:object_assignable],
+      generated_id: params[:generated_id]
+    )
   end
 
   # GET /outcome_events/1
