@@ -208,3 +208,7 @@ Example REST call (all outcome events for specified user) :
 Callisto is a project from [OpenEd, Inc.](http://www.opened.com), a division of ACT Assessment Technologies.
 
 Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.
+
+It is open source and available via [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).  Please submit pull requests to us via the GitHub repo if you make enhancements.  [Email us](mailto:adam@opened.com) if you want to discuss your contributions. 
+
+IMS Caliper is a trademark of [IMS Global](http://imsglobal.org)
