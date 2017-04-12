@@ -1,44 +1,43 @@
-<h2>Callisto</h2>
-<p>
-Most Learning Record Stores (LRSes) that support IMS Global Caliper (or XAPI)
-today just store the JSONB of the event payload in some fashion. There is no
-built-in query capability. You must write rather elaborate JSON queries to
-gain insight into student usage patterns based on the events.
-</p>
-<p>
-Callisto provides the same generic event store. But it decomposes the various
-event types into their own structured forms and then exposes specific REST
-queries for each event type. It is our hope that the Callisto query web Services
-eventually become extensions to the IMS Global Caliper standard.
-</p>
-<h2>Code and Architecture</h2>
 
-<p>Callisto is a very simple Ruby on Rails app with models and controllers for
-(eventually) all important Caliper events likely to be used for query. It is written
-for Postgres due to PG's excellent JSONB and fulltext support which are likely to be helpful.
-It could be ported to other relational databases. Given its focus on web service query,
-Callisto will stick very closely to the generated Rails scaffolding for the models for each Caliper event.
-</p>
-<p>
-Code is available on <a href="http://github.com/openedinc/callisto">GitGub</a>
-</p>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Callisto</title>
+</head>
 
-<p>All Callisto code is open source <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p>
+<body>
+  <h2>Callisto Overview</h2>
+  <div>
+    <p>
+    Most Learning Record Stores (LRSes) that support IMS Global Caliper (or XAPI)
+    today just store the JSONB of the event payload in some fashion. There is no
+    built-in query capability. You must write rather elaborate JSON queries to
+    gain insight into student usage patterns based on the events.
+    </p>
+    <p>
+    Callisto provides the same generic event store. But it decomposes the various
+    event types into their own structured forms and then exposes specific REST
+    queries for each event type. It is our hope that the Callisto query web Services
+    eventually become extensions to the IMS Global Caliper standard.
+    </p>
+    <h2>Code and Architecture</h2>
 
-<h2>Endpoints</h2>
-<h3>Populating Caliper Events</h3>
-<p>
-To store Caliper events in Callisto use the CaliperEvent model Create method:
-</p>
-<p>
-<code>
-  curl --data "payload={
-  "sensor": "https://<<Caliper sensor site URL>",
-  "sendTime":"2017-03-29T00:29:26.154Z",
-  "data":"[{event 1},{event 2}]}" https://opencallisto.herokuapp.com/caliper_events/create
-</code>
-</p>
-<h2>Credits</h2>
-<p>Callisto is a project from OpenEd, Inc., a division of ACT Assessment Technologies.</p>
+    <p>Callisto is a very simple Ruby on Rails app with models and controllers for
+    (eventually) all important Caliper events likely to be used for query. It is written
+    for Postgres due to PG's excellent JSONB and fulltext support which are likely to be helpful.
+    It could be ported to other relational databases. Given its focus on web service query,
+    Callisto will stick very closely to the generated Rails scaffolding for the models for each Caliper event.
+    </p>
+    <p>
+    Code is available on <a href="https://github.com/openedinc/callisto">GitHub</a>
+    </p>
 
-<p>Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.</p>
+    <p>All Callisto code is open source <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p>
+
+    <h2>Credits</h2>
+    <p>Callisto is a project from OpenEd, Inc., a division of ACT Assessment Technologies.</p>
+
+    <p>Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.</p>
+  </div>
+</body>
+</html>

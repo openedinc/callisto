@@ -1,0 +1,2 @@
+module MediaEventsHelper
+end

@@ -1,13 +1,20 @@
 class AssessmentItemEventsController < ApplicationController
   before_action :set_assessment_item_event, only: [:show, :edit, :update, :destroy]
 
-  def load_events
-  end
-
   # GET /assessment_item_events
   # GET /assessment_item_events.json
+  # allow query by follow params:
+  #     "actor_id"
+  #     "action"
+  #     "object_id"
+  #     "generated_id"
   def index
-    @assessment_item_events = AssessmentItemEvent.all
+    @assessment_item_events = AssessmentItemEvent.search(
+      actor_id: params[:actor_id],
+      action: params[:action],
+      generated_id: params[:generated_id],
+      object_id: params[:object_id]
+    )
   end
 
   # GET /assessment_item_events/1
@@ -72,6 +79,17 @@ class AssessmentItemEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_item_event_params
-      params.require(:assessment_item_event).permit(:actorId, :action, :objectId, :maxScore, :isPartOf, :generatedId, :generatedCount, :generatedStartedAtTime)
+      params
+        .require(:assessment_item_event)
+        .permit(
+          :actor_id,
+          :action,
+          :object_id,
+          :max_score,
+          :is_part_of,
+          :generated_id,
+          :generated_count,
+          :generated_started_at_time
+        )
     end
 end
