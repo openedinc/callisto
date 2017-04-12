@@ -51,10 +51,10 @@ t.datetime "generatedStartedAtTime"
   end
 
   def parseMedia(e)
-  end 
+  end
 
   def perform(*args)
-    events=CaliperEvent.where :routed=>false
+    events=CaliperEvent.where :routed==nil
     events.each do |e|
       result=JSON.parse(e.payload)
       subevents=result["data"]
@@ -70,6 +70,8 @@ t.datetime "generatedStartedAtTime"
           parseMedia(se)
         end
       end
+      e.routed=true
+      e.save
     end
   end
 end
