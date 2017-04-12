@@ -29,19 +29,27 @@ t.datetime "generatedStartedAtTime"
 =end
   def parseAssessmentItem(e)
     ai=AssessmentItemEvent.new
-    ai.actorId=e["actor"]["@id"]
+    ai.actorId=e["actor"]["@id"] if e["actor"]
     ai.action=e["action"]
-    ai.objectId=e["object"]["@id"]
-    ai.isPartOf=e["object"]["isPartOf"]["@id"]
-    ai.maxScore=e["object"]["maxScore"]
-    if e["generated"]["attempt"]
-      ai.generatedId=e["generated"]["attempt"]["@id"]
-      ai.generatedCount=e["generated"]["attempt"]["count"]
-      ai.generatedStartedAtTime=e["generated"]["startedAtTime"]
+    if e["object"]
+      ai.objectId=e["object"]["@id"]
+      ai.isPartOf=e["object"]["isPartOf"]["@id"] if e["object"]["isPartOf"]
+      ai.maxScore=e["object"]["maxScore"]
     else
-      ai.generatedId=e["generated"]["@id"]
-      ai.generatedCount=e["generated"]["count"]
-      ai.generatedStartedAtTime=e["generated"]["startedAtTime"]
+      p "No object attribute in assessment item event"
+    end
+    if e["generated"]
+      if e["generated"]["attempt"]
+        ai.generatedId=e["generated"]["attempt"]["@id"]
+        ai.generatedCount=e["generated"]["attempt"]["count"]
+        ai.generatedStartedAtTime=e["generated"]["startedAtTime"]
+      else
+        ai.generatedId=e["generated"]["@id"]
+        ai.generatedCount=e["generated"]["count"]
+        ai.generatedStartedAtTime=e["generated"]["startedAtTime"]
+      end
+    else
+      p "No generated attribute in assessment item event"
     end
     ai.save
     ai
