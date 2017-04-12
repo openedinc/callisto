@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330180103) do
+ActiveRecord::Schema.define(version: 20170412204252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170330180103) do
   create_table "caliper_events", force: :cascade do |t|
     t.jsonb    "payload"
     t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "routed"
+  end
+
+  create_table "media_events", force: :cascade do |t|
+    t.string   "actor_id"
+    t.string   "action"
+    t.string   "object_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

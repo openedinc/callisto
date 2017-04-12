@@ -37,6 +37,7 @@ class CaliperEventsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /caliper_events/1
   # PATCH/PUT /caliper_events/1.json
   def update
