@@ -110,6 +110,44 @@ t.string   "generatedScoredBy"
     o
   end
 
+=begin
+parse
+
+{\"eventTime\"=>\"2017-04-12T17:36:17.910Z\", \"federatedSession\"=>\"81538\", \"edApp\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/SoftwareApplication\", \"@id\"=>\"https://myunitylogin.com/opened\", \"name\"=>\"Unity\"}, \"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\",
+\"@type\"=>\"http://purl.imsglobal.org/caliper/v1/AssessmentEvent\",
+\"actor\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/lis/Person\", \"@id\"=>\"https://A0501617.opened.com/user/polina_teacher_240\"},
+\"action\"=>\"http://purl.imsglobal.org/vocab/caliper/v1/action#Paused\",
+\"object\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/Assessment\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264\"},
+\"generated\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/Attempt\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/attempt/9d6501d3-535b-4dd4-928c-b6056ef0f5da\", \"count\"=>1, \"startedAtTime\"=>nil, \"endedAtTime\"=>\"2017-04-12T17:36:17.908Z\"}}"
+
+into
+
+t.string   "actorId"
+t.string   "action"
+t.string   "objectId"
+t.string   "generatedId"
+t.string   "generatedEndedAtTime"
+
+=end
+  def parseAssessment(e)
+    a=AssessmentEvent.new
+    a.actorId=e["actor"]["@id"] if e["actor"]
+    a.action=e["action"]
+    if e["object"]
+      a.objectId=e["object"]["@id"]
+    else
+      p "No object attribute in AssessmentEvent"
+    end
+    if e["generated"]
+      a.generatedId=e["generated"]["@id"]
+      a.generatedEndedAtTime=e["generated"]["generatedEndedAtTime"]
+    else
+      p "No generated attribute in AssessmentEvent"
+    end
+    a.save
+    a
+  end
+
   def parseMedia(e)
   end
 
@@ -122,12 +160,14 @@ t.string   "generatedScoredBy"
         p "Subevent #{se}"
         type=se["@type"]
         case type
-        when "http://purl.imsglobal.org/caliper/v1/AssessmentEvent"
+        when "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent"
           ae=parseAssessmentItem(se)
         when "http://purl.imsglobal.org/caliper/v1/OutcomeEvent"
-          parseOutcome(se)
+          o=parseOutcome(se)
+        when "http://purl.imsglobal.org/caliper/v1/AssessmentEvent"
+          a=parseAssessment(se)
         when "http://purl.imsglobal.org/caliper/v1/MediaEvent"
-          parseMedia(se)
+          m=parseMedia(se)
         end
       end
       e.routed=true

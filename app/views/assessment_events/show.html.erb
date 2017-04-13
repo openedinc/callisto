@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Actorid:</strong>
+  <%= @assessment_event.actorId %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @assessment_event.action %>
+</p>
+
+<p>
+  <strong>Objectid:</strong>
+  <%= @assessment_event.objectId %>
+</p>
+
+<p>
+  <strong>Generatedid:</strong>
+  <%= @assessment_event.generatedId %>
+</p>
+
+<p>
+  <strong>Generatedendedattime:</strong>
+  <%= @assessment_event.generatedEndedAtTime %>
+</p>
+
+<%= link_to 'Edit', edit_assessment_event_path(@assessment_event) %> |
+<%= link_to 'Back', assessment_events_path %>

@@ -1,0 +1,42 @@
+<%= form_for(assessment_event) do |f| %>
+  <% if assessment_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assessment_event.errors.count, "error") %> prohibited this assessment_event from being saved:</h2>
+
+      <ul>
+      <% assessment_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :actorId %>
+    <%= f.text_field :actorId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :action %>
+    <%= f.text_field :action %>
+  </div>
+
+  <div class="field">
+    <%= f.label :objectId %>
+    <%= f.text_field :objectId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :generatedId %>
+    <%= f.text_field :generatedId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :generatedEndedAtTime %>
+    <%= f.datetime_select :generatedEndedAtTime %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

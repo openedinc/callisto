@@ -1,0 +1,2 @@
+class AssessmentEvent < ApplicationRecord
+end
