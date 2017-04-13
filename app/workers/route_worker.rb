@@ -124,9 +124,9 @@ t.string   "generatedScoredBy"
         case type
         when "http://purl.imsglobal.org/caliper/v1/AssessmentEvent"
           ae=parseAssessmentItem(se)
-        when "http://purl.imsglobal.org/caliper/OutcomeEvent"
+        when "http://purl.imsglobal.org/caliper/v1/OutcomeEvent"
           parseOutcome(se)
-        when "http://purl.imsglobal.org/caliper/MediaEvent"
+        when "http://purl.imsglobal.org/caliper/v1/MediaEvent"
           parseMedia(se)
         end
       end
