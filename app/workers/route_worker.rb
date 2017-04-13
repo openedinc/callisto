@@ -36,7 +36,7 @@ t.datetime "generatedStartedAtTime"
       ai.isPartOf=e["object"]["isPartOf"]["@id"] if e["object"]["isPartOf"]
       ai.maxScore=e["object"]["maxScore"]
     else
-      p "No object attribute in assessment item event"
+      p "No object attribute in AssessmentItem event"
     end
     if e["generated"]
       if e["generated"]["attempt"]
@@ -49,13 +49,65 @@ t.datetime "generatedStartedAtTime"
         ai.generatedStartedAtTime=e["generated"]["startedAtTime"]
       end
     else
-      p "No generated attribute in assessment item event"
+      p "No generated attribute in AssessmentItem event"
     end
     ai.save
     ai
   end
 
+=begin
+PARSE
+{\"eventTime\"=>\"2017-04-11T17:59:50.452Z\", \"federatedSession\"=>\"81403\", \"edApp\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/SoftwareApplication\", \"@id\"=>\"https://myunitylogin.com/opened\", \"name\"=>\"Unity\"}, \"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\",
+\"@type\"=>\"http://purl.imsglobal.org/caliper/v1/OutcomeEvent\",
+\"actor\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/lis/Person\", \"@id\"=>\"https://A0501617.opened.com/user/polina_teacher_240\"}, \"action\"=>\"http://purl.imsglobal.org/vocab/caliper/v1/action#Graded\",
+\"object\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/Attempt\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/attempt/8eeb8415-d3c3-421e-a1c1-e84e58db611a\",
+\"assignable\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/AssessmentItem\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/item_bank/2b249051-1bfe-49ce-ba28-cea2ac907807/item/1094272\", \"maxScore\"=>1, \"isPartOf\"=>{\"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264\"}}, \"count\"=>1, \"startedAtTime\"=>\"2017-04-11T17:59:47.600Z\", \"endedAtTime\"=>nil},
+
+\"generated\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/Result\",
+\  "@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/item_bank/2b249051-1bfe-49ce-ba28-cea2ac907807/item/1094272/result/0ebc82c1-8e7a-4ca6-b7a0-f3740167df5c\", \"actor\"=>{\"@id\"=>\"https://A0501617.opened.com/user/polina_teacher_240\"},
+
+\"assignable\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/AssessmentItem\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/item_bank/2b249051-1bfe-49ce-ba28-cea2ac907807/item/1094272\",
+  \"maxScore\"=>1, \"isPartOf\"=>{\"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264\"}}, \"totalScore\"=>0, \"scoredBy\"=>{\"@id\"=>\"https://myunitylogin.com/opened\"}},
+
+\"group\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/lis/CourseSection\", \"@id\"=>\"https://A0501617.opened.com/course/section/32080\", \"name\"=>\"Math - Grade K-1\"}
+
+}
+
+into
+t.string   "actorId"
+t.string   "action"
+t.string   "objectId"
+t.string   "assignableId"
+t.integer  "assignableMaxScore"
+t.string   "assignableIsPartOf"
+t.string   "generatedId"
+t.integer  "generatedTotalScore"
+t.string   "generatedScoredBy"
+
+=end
   def parseOutcome(e)
+    o=OutcomeEvent.new
+    o.actorId=e["actor"]["@id"] if e["actor"]
+    o.action=e["action"]
+    if e["object"]
+      o.objectId=e["object"]["@id"]
+    else
+      p "No object attribute in OutcomeEvent"
+    end
+    if e["assignable"]
+      o.assignableId=e["assignable"]["@id"]
+      o.assignableMaxScore=e["assignable"]["maxScore"]
+      o.assignableIsPartOf=e["assignable"]["isPartOf"]["@id"] if o.assignableIsPartOf=e["assignable"]["isPartOf"]
+    end
+    if e["generated"]
+      o.generatedId=e["generated"]["@id"]
+      o.generatedTotalScore=e["generated"]["generatedTotalScore"]
+      o.generatedScoredBy=e["generated"]["scoredBy"]
+    else
+      p "No generated attribute in OutcomeEvent"
+    end
+    o.save
+    o
   end
 
   def parseMedia(e)
