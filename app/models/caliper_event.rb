@@ -1,6 +1,8 @@
 class CaliperEvent < ApplicationRecord
 
-  def after_save(record)
+  after_save :perform_route_worker
+
+  def perform_route_worker(record)
     RouteWorker.new.perform_async
   end
 end
