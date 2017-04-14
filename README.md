@@ -42,7 +42,7 @@ To store Caliper events in Callisto use the CaliperEvent model Create method.  I
   "data":"[{event 1},{event 2}]}" https://opencallisto.org/caliper_events
 ```
 
-### Sample Caliper Event
+#### Sample Caliper Event
 
 Below is a sample Caliper event (specifically AssessmentItemCompleted) from the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures/blob/master/src/test/resources/fixtures/caliperAssessmentItemCompletedEvent.json)
 
@@ -154,11 +154,11 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
   }
 ```
 
-## Querying for Event Types
+### Querying for Event Types
 
 Once Caliper events are stored with the "caliper_events/create" method they can be retrieved using various index methods for each event type.
 
-### AssessmentItemEvents
+#### AssessmentItemEvents
 
 Various queries on AssessmentItemEvents can be performed with the assessment_item_events.json endpoint.
 
@@ -174,7 +174,7 @@ Example REST call (all assessment item events for specified user):
   curl https://opencallisto.org/assessment_item_events.json?actor_id=https://example.edu/user/554433
 ```
 
-### OutcomeEvents
+#### OutcomeEvents
 
 Various queries on OutcomeEvents can be performed with the outcome_events.json endpoint.
 
@@ -189,7 +189,7 @@ Example REST call (all outcome events for specified user) :
   curl https://opencallisto.org/outcome_events.json?actor_id=https://example.edu/user/554433
 ```
 
-### AssessmentEvents
+#### AssessmentEvents
 
 Various queries on AssessmentEvents can be performed with the outcome_events.json endpoint.
 
@@ -204,7 +204,7 @@ Example REST call (all outcome events for specified user) :
   curl https://opencallisto.org/assessment_events.json?actor_id=https://example.edu/user/554433
 ```
 
-### MediaEvents
+#### MediaEvents
 
 Various queries on MediaEvents can be performed with the media_events.json endpoint.
 
@@ -218,7 +218,7 @@ Example REST call (all outcome events for specified user) :
   curl https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
 ```
 
-# Credits
+## Credits
 
 Callisto is a project from [OpenEd, Inc.](http://www.opened.com), a division of ACT Assessment Technologies.
 
