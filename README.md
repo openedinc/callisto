@@ -195,8 +195,9 @@ Various queries on AssessmentEvents can be performed with the outcome_events.jso
 
 Parameters include:
 * actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
-* object_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
-* generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+* action - what happened with the assessment, e.g."http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
+* object_id - the ID of the assessment, e.g. "https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264"
+* generated_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
 
 Example REST call (all outcome events for specified user) :
 ```
@@ -223,6 +224,6 @@ Callisto is a project from [OpenEd, Inc.](http://www.opened.com), a division of 
 
 Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.
 
-It is open source and available via [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).  Please submit pull requests to us via the GitHub repo if you make enhancements.  [Email us](mailto:adam@opened.com) if you want to discuss your contributions. 
+It is open source and available via [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).  Please submit pull requests to us via the GitHub repo if you make enhancements.  [Email us](mailto:adam@opened.com) if you want to discuss your contributions.
 
 IMS Caliper is a trademark of [IMS Global](http://imsglobal.org)
