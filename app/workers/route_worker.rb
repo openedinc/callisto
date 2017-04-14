@@ -149,6 +149,16 @@ t.string   "generatedEndedAtTime"
   end
 
   def parseMedia(e)
+    m=MediaEvent.new
+    m.actorId=e["actor"]["@id"] if e["actor"]
+    m.action=e["action"]
+    if e["object"]
+      m.objectId=e["object"]["@id"]
+    else
+      p "No object attribute in MediaEvent"
+    end
+    m.save
+    m
   end
 
   def perform(*args)
