@@ -162,7 +162,11 @@ t.string   "generatedEndedAtTime"
   end
 
   def perform(*args)
-    events=CaliperEvent.where :routed==nil
+    if args[0]=="all"
+      events=CaliperEvent.all
+    else
+      events=CaliperEvent.where :routed==nil
+    end
     events.each do |e|
       result=JSON.parse(e.payload)
       subevents=result["data"]
