@@ -154,7 +154,7 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
   }
 ```
 
-### Querying for Event Types
+## Querying for Event Types
 
 Once Caliper events are stored with the "caliper_events/create" method they can be retrieved using various index methods for each event type.
 
@@ -187,6 +187,20 @@ Parameters include:
 Example REST call (all outcome events for specified user) :
 ```
   curl https://opencallisto.org/outcome_events.json?actor_id=https://example.edu/user/554433
+```
+
+### AssessmentEvents
+
+Various queries on AssessmentEvents can be performed with the outcome_events.json endpoint.
+
+Parameters include:
+* actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
+* object_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
+* generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+
+Example REST call (all outcome events for specified user) :
+```
+  curl https://opencallisto.org/assessment_events.json?actor_id=https://example.edu/user/554433
 ```
 
 ### MediaEvents
