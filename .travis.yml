@@ -6,6 +6,8 @@ rvm:
 cache: bundler
 addons:
   postgresql: "9.5"
+services:
+  - redis-server
 install:
   - bin/bundle --without development
 before_script:
