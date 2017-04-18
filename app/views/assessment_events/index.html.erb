@@ -2,7 +2,7 @@
 
 <h1>Assessment Events</h1>
 
-<table>
+<table border="1">
   <thead>
     <tr>
       <th>Actorid</th>
@@ -24,12 +24,10 @@
         <td><%= assessment_event.generatedEndedAtTime %></td>
         <td><%= link_to 'Show', assessment_event %></td>
         <td><%= link_to 'Edit', edit_assessment_event_path(assessment_event) %></td>
-        <td><%= link_to 'Destroy', assessment_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'X', assessment_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Assessment Event', new_assessment_event_path %>
