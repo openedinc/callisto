@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Payload</th>
+      <th>Payload Data Only</th>
       <th>Created At</th>
       <th colspan="2"></th>
     </tr>
@@ -14,14 +14,15 @@
   <tbody>
     <% @caliper_events.each do |caliper_event| %>
       <tr>
-        <td>
         <%
         data=JSON.parse(caliper_event.payload)["data"]
         data.each do |item|
         %>
+        <td>
         <%=item%>
         <p/>
-        <%=link_to "Full Caliper Event",caliper_event%></td>
+        <%=link_to "View Full Caliper Event",caliper_event%>
+        </td>
         <%end%>
         <td><%= caliper_event.created_at %></td>
         <td><%= link_to 'Edit', edit_caliper_event_path(caliper_event) %></td>
