@@ -17,9 +17,10 @@
         <%
         data=JSON.parse(caliper_event.payload)["data"]
         data.each do |item|
+          printitem=JSON.pretty_generate(item.as_json)
         %>
         <td>
-        EVENT DATA <%=item%>
+        EVENT DATA <%=printitem%>
         <p/>
         </td>
         <%end%>
