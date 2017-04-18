@@ -6,24 +6,21 @@
   <thead>
     <tr>
       <th>Payload</th>
-      <th>Time</th>
-      <th colspan="3"></th>
+      <th>Created At</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @caliper_events.each do |caliper_event| %>
       <tr>
-        <td><%= caliper_event.payload %></td>
-        <td><%= caliper_event.time %></td>
-        <td><%= link_to 'Show', caliper_event %></td>
+        <td><%= link_to JSON.pretty_generate(caliper_event.payload),caliper_event  %></td>
+        <td><%= caliper_event.created_at %></td>
         <td><%= link_to 'Edit', edit_caliper_event_path(caliper_event) %></td>
-        <td><%= link_to 'Destroy', caliper_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'X', caliper_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Caliper Event', new_caliper_event_path %>
