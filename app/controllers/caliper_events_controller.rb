@@ -1,4 +1,5 @@
 class CaliperEventsController < ApplicationController
+  include CaliperEventsHelper
   before_action :set_caliper_event, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, if: :api_request?
   # GET /caliper_events
