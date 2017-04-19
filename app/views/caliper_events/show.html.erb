@@ -2,7 +2,16 @@
 
 <p>
   <strong>Payload:</strong>
-  <%= @caliper_event.payload %>
+  <pre>
+<%
+data=JSON.parse(@caliper_event.payload)["data"]
+data.each do |item|
+  printitem=JSON.pretty_generate(item.as_json)
+%>
+<%=printitem.to_s%>
+<p/>
+<%end%>
+  </pre>
 </p>
 
 <p>

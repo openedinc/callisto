@@ -4,12 +4,20 @@ class CaliperEventsController < ApplicationController
   # GET /caliper_events
   # GET /caliper_events.json
   def index
-    @caliper_events = CaliperEvent.all
+    @caliper_events = CaliperEvent.order(:created_at)
+  end
+
+
+  def action_from_event
+    p=@caliper_event.payload
+    ph=JSON.parse(p)
+    @action=ph["action"]
   end
 
   # GET /caliper_events/1
   # GET /caliper_events/1.json
   def show
+    @action=action_from_event(@caliper_event)
   end
 
   # GET /caliper_events/new
