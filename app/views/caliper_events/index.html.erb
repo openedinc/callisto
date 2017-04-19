@@ -17,8 +17,8 @@
     <% @caliper_events.each do |caliper_event| %>
       <tr>
         <td><%=link_to action_from_event(caliper_event),caliper_event%> <%= link_to 'Edit', edit_caliper_event_path(caliper_event) %></td>
-        <td></td>
-        <td></td>
+        <td><%=actor_from_event%></td>
+        <td><%=object_from_event%></td>
         <td><%= caliper_event.created_at %></td>
         <td><%= link_to 'X', caliper_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
