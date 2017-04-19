@@ -1,7 +1,7 @@
 module CaliperEventsHelper
 
     def action_from_event(event)
-      p "Processing full payload #{event.payload}"
+      p "Processing full payload #{event.payload.to_s}"
       payload_hash=JSON.parse(event.payload.to_s)
       p "Action is: #{payload_hash['action']}"
       payload_hash["action"]
