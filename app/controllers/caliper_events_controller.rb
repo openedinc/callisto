@@ -1,5 +1,3 @@
-require "JSON"
-
 class CaliperEventsController < ApplicationController
   before_action :set_caliper_event, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, if: :api_request?
@@ -19,7 +17,6 @@ class CaliperEventsController < ApplicationController
   # GET /caliper_events/1.json
   def show
     @action=action_from_event(@caliper_event)
-    p "Action is #{@action}"
   end
 
   # GET /caliper_events/new
