@@ -8,8 +8,8 @@ class CaliperEventsController < ApplicationController
   end
 
 
-  def action_from_event
-    payload_hash=JSON.parse(@caliper_event.payload)
+  def action_from_event(event)
+    payload_hash=JSON.parse(event.payload)
     payload_hash["action"]
   end
 
