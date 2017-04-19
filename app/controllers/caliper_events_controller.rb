@@ -7,12 +7,6 @@ class CaliperEventsController < ApplicationController
     @caliper_events = CaliperEvent.order(:created_at)
   end
 
-
-  def action_from_event(event)
-    payload_hash=JSON.parse(event.payload)
-    payload_hash["action"]
-  end
-
   # GET /caliper_events/1
   # GET /caliper_events/1.json
   def show
