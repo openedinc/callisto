@@ -15,6 +15,7 @@
     <% @caliper_events.each do |caliper_event| %>
       <tr>
         <td>
+          <pre>
         <%
         data=JSON.parse(caliper_event.payload)["data"]
         data.each do |item|
@@ -23,6 +24,7 @@
         EVENT DATA <%=printitem.to_s%>
         <p/>
         <%end%>
+          </pre>
         <%=link_to "View",caliper_event%> <%= link_to 'Edit', edit_caliper_event_path(caliper_event) %></td>
         <td><%= caliper_event.created_at %></td>
         <td><%= link_to 'X', caliper_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
