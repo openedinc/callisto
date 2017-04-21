@@ -1,5 +1,10 @@
 class AssessmentEventsController < ApplicationController
   before_action :set_assessment_event, only: [:show, :edit, :update, :destroy]
+  validates_uniqueness :generatedId 
+
+  def dedupe
+    @assessment_events=
+  end
 
   # GET /assessment_events
   # GET /assessment_events.json

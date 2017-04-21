@@ -10,32 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413235236) do
+ActiveRecord::Schema.define(version: 20170421173055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assessment_events", force: :cascade do |t|
-    t.string   "actorId"
+    t.string   "actor_id"
     t.string   "action"
-    t.string   "objectId"
-    t.string   "generatedId"
-    t.datetime "generatedEndedAtTime"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "object_id"
+    t.string   "generated_id"
+    t.datetime "generated_ended_at_time"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "assessment_item_events", force: :cascade do |t|
-    t.string   "actorId"
+    t.string   "actor_id"
     t.string   "action"
-    t.string   "objectId"
-    t.integer  "maxScore"
-    t.string   "isPartOf"
-    t.string   "generatedId"
-    t.integer  "generatedCount"
-    t.datetime "generatedStartedAtTime"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "object_id"
+    t.integer  "max_score"
+    t.string   "is_part_of"
+    t.string   "generated_id"
+    t.integer  "generated_count"
+    t.datetime "generated_started_at_time"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "caliper_events", force: :cascade do |t|
@@ -55,17 +55,17 @@ ActiveRecord::Schema.define(version: 20170413235236) do
   end
 
   create_table "outcome_events", force: :cascade do |t|
-    t.string   "actorId"
+    t.string   "actor_id"
     t.string   "action"
-    t.string   "objectId"
-    t.string   "assignableId"
-    t.integer  "assignableMaxScore"
-    t.string   "assignableIsPartOf"
-    t.string   "generatedId"
-    t.integer  "generatedTotalScore"
-    t.string   "generatedScoredBy"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.string   "object_id"
+    t.string   "assignable_id"
+    t.integer  "assignable_max_score"
+    t.string   "assignable_is_part_of"
+    t.string   "generated_count"
+    t.integer  "generated_total_score"
+    t.string   "generated_scored_by"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
 end
