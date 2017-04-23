@@ -1,6 +1,6 @@
 class AssessmentEventsController < ApplicationController
   before_action :set_assessment_event, only: [:show, :edit, :update, :destroy]
-  validates_uniqueness :generatedId 
+  validates_uniqueness :generated_id 
 
   def dedupe
     @assessment_events=
@@ -74,6 +74,6 @@ class AssessmentEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_event_params
-      params.require(:assessment_event).permit(:actorId, :action, :objectId, :generatedId, :generatedEndedAtTime)
+      params.require(:assessment_event).permit(:actor_id, :action, :object_id, :generated_id, :generated_ended_at_time)
     end
 end

@@ -17,7 +17,7 @@ class AssessmentItemEventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create assessment_item_event" do
     assert_difference('AssessmentItemEvent.count') do
-      post assessment_item_events_url, params: { assessment_item_event: { action: @assessment_item_event.action, actorId: @assessment_item_event.actorId, generatedCount: @assessment_item_event.generatedCount, generatedId: @assessment_item_event.generatedId, generatedStartedAtTime: @assessment_item_event.generatedStartedAtTime, isPartOf: @assessment_item_event.isPartOf, maxScore: @assessment_item_event.maxScore, objectId: @assessment_item_event.objectId } }
+      post assessment_item_events_url, params: { assessment_item_event: { action: @assessment_item_event.action, actor_id: @assessment_item_event.actor_id, generated_count: @assessment_item_event.generated_count, generated_id: @assessment_item_event.generated_id, generated_started_at_time: @assessment_item_event.generated_started_at_time, is_part_of: @assessment_item_event.is_part_of, max_score: @assessment_item_event.max_score, object_id: @assessment_item_event.object_id } }
     end
 
     assert_redirected_to assessment_item_event_url(AssessmentItemEvent.last)
@@ -34,7 +34,7 @@ class AssessmentItemEventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update assessment_item_event" do
-    patch assessment_item_event_url(@assessment_item_event), params: { assessment_item_event: { action: @assessment_item_event.action, actorId: @assessment_item_event.actorId, generatedCount: @assessment_item_event.generatedCount, generatedId: @assessment_item_event.generatedId, generatedStartedAtTime: @assessment_item_event.generatedStartedAtTime, isPartOf: @assessment_item_event.isPartOf, maxScore: @assessment_item_event.maxScore, objectId: @assessment_item_event.objectId } }
+    patch assessment_item_event_url(@assessment_item_event), params: { assessment_item_event: { action: @assessment_item_event.action, actor_id: @assessment_item_event.actor_id, generated_count: @assessment_item_event.generated_count, generated_id: @assessment_item_event.generated_id, generated_started_at_time: @assessment_item_event.generated_started_at_time, is_part_of: @assessment_item_event.is_part_of, max_score: @assessment_item_event.max_score, object_id: @assessment_item_event.object_id } }
     assert_redirected_to assessment_item_event_url(@assessment_item_event)
   end
 

@@ -17,7 +17,7 @@ class AssessmentEventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create assessment_event" do
     assert_difference('AssessmentEvent.count') do
-      post assessment_events_url, params: { assessment_event: { action: @assessment_event.action, actorId: @assessment_event.actorId, generatedEndedAtTime: @assessment_event.generatedEndedAtTime, generatedId: @assessment_event.generatedId, objectId: @assessment_event.objectId } }
+      post assessment_events_url, params: { assessment_event: { action: @assessment_event.action, actor_id: @assessment_event.actor_id, generated_ended_at_time: @assessment_event.generated_ended_at_time, generated_id: @assessment_event.generated_id, object_id: @assessment_event.object_id } }
     end
 
     assert_redirected_to assessment_event_url(AssessmentEvent.last)
@@ -34,7 +34,7 @@ class AssessmentEventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update assessment_event" do
-    patch assessment_event_url(@assessment_event), params: { assessment_event: { action: @assessment_event.action, actorId: @assessment_event.actorId, generatedEndedAtTime: @assessment_event.generatedEndedAtTime, generatedId: @assessment_event.generatedId, objectId: @assessment_event.objectId } }
+    patch assessment_event_url(@assessment_event), params: { assessment_event: { action: @assessment_event.action, actor_id: @assessment_event.actor_id, generated_ended_at_time: @assessment_event.generated_ended_at_time, generated_id: @assessment_event.generated_id, object_id: @assessment_event.object_id } }
     assert_redirected_to assessment_event_url(@assessment_event)
   end
 

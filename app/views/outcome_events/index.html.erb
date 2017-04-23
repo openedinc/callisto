@@ -5,15 +5,15 @@
 <table border="1">
   <thead>
     <tr>
-      <th>Actorid</th>
+      <th>actor_id</th>
       <th>Action</th>
-      <th>Objectid</th>
-      <th>Assignableid</th>
-      <th>Assignablemaxscore</th>
-      <th>Assignableispartof</th>
-      <th>Generatedid</th>
-      <th>Generatedtotalscore</th>
-      <th>Generatedscoredby</th>
+      <th>object_id</th>
+      <th>assignable_id</th>
+      <th>Assignablemax_score</th>
+      <th>Assignableis_part_of</th>
+      <th>generated_id</th>
+      <th>generated_total_score</th>
+      <th>generated_scored_by</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,15 +21,15 @@
   <tbody>
     <% @outcome_events.each do |outcome_event| %>
       <tr>
-        <td><%= outcome_event.actorId %></td>
+        <td><%= outcome_event.actor_id %></td>
         <td><%= outcome_event.action %></td>
-        <td><%= outcome_event.objectId %></td>
-        <td><%= outcome_event.assignableId %></td>
-        <td><%= outcome_event.assignableMaxScore %></td>
-        <td><%= outcome_event.assignableIsPartOf %></td>
-        <td><%= outcome_event.generatedId %></td>
-        <td><%= outcome_event.generatedTotalScore %></td>
-        <td><%= outcome_event.generatedScoredBy %></td>
+        <td><%= outcome_event.object_id %></td>
+        <td><%= outcome_event.assignable_id %></td>
+        <td><%= outcome_event.assignablemax_score %></td>
+        <td><%= outcome_event.assignableis_part_of %></td>
+        <td><%= outcome_event.generated_id %></td>
+        <td><%= outcome_event.generated_total_score %></td>
+        <td><%= outcome_event.generated_scored_by %></td>
         <td><%= link_to 'Show', outcome_event %></td>
         <td><%= link_to 'Edit', edit_outcome_event_path(outcome_event) %></td>
         <td><%= link_to 'Destroy', outcome_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

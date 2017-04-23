@@ -1,23 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  actorId: MyString
+  actor_id: MyString
   action: MyString
-  objectId: MyString
-  assignableId: MyString
-  assignableMaxScore: 1
-  assignableIsPartOf: MyString
-  generatedId: MyString
-  generatedTotalScore: 1
-  generatedScoredBy: MyString
+  object_id: MyString
+  assignable_id: MyString
+  assignablemax_score: 1
+  assignableis_part_of: MyString
+  generated_id: MyString
+  generated_total_score: 1
+  generated_scored_by: MyString
 
 two:
-  actorId: MyString
+  actor_id: MyString
   action: MyString
-  objectId: MyString
-  assignableId: MyString
-  assignableMaxScore: 1
-  assignableIsPartOf: MyString
-  generatedId: MyString
-  generatedTotalScore: 1
-  generatedScoredBy: MyString
+  object_id: MyString
+  assignable_id: MyString
+  assignablemax_score: 1
+  assignableis_part_of: MyString
+  generated_id: MyString
+  generated_total_score: 1
+  generated_scored_by: MyString

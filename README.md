@@ -70,7 +70,7 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
       "objectType": [],
       "alignedLearningObjective": [],
       "keywords": [],
-      "isPartOf": {
+      "is_part_of": {
         "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
         "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
         "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
@@ -79,7 +79,7 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
         "objectType": [],
         "alignedLearningObjective": [],
         "keywords": [],
-        "isPartOf": null,
+        "is_part_of": null,
         "extensions": {},
         "dateCreated": "2015-08-01T06:00:00.000Z",
         "dateModified": "2015-09-02T11:30:00.000Z",
@@ -91,7 +91,7 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
         "dateToSubmit": "2015-09-28T11:59:59.000Z",
         "maxAttempts": 2,
         "maxSubmits": 2,
-        "maxScore": 3.0
+        "max_score": 3.0
       },
       "extensions": {},
       "dateCreated": null,
@@ -104,7 +104,7 @@ Below is a sample Caliper event (specifically AssessmentItemCompleted) from the 
       "dateToSubmit": null,
       "maxAttempts": 2,
       "maxSubmits": 2,
-      "maxScore": 1.0,
+      "max_score": 1.0,
       "isTimeDependent": false
     },
     "target": null,

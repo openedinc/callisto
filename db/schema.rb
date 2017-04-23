@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170421173055) do
     t.string   "assignable_id"
     t.integer  "assignable_max_score"
     t.string   "assignable_is_part_of"
-    t.string   "generated_count"
+    t.string   "generated_id"
     t.integer  "generated_total_score"
     t.string   "generated_scored_by"
     t.datetime "created_at",            null: false

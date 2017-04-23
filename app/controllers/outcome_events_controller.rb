@@ -81,6 +81,6 @@ Parameters include:
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outcome_event_params
-      params.require(:outcome_event).permit(:actorId, :action, :objectId, :assignableId, :assignableMaxScore, :assignableIsPartOf, :generatedId, :generatedTotalScore, :generatedScoredBy)
+      params.require(:outcome_event).permit(:actor_id, :action, :object_id, :assignable_id, :assignablemax_score, :assignableis_part_of, :generated_id, :generated_total_score, :generated_scored_by)
     end
 end

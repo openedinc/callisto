@@ -5,11 +5,11 @@
 <table border="1">
   <thead>
     <tr>
-      <th>Actorid</th>
+      <th>actor_id</th>
       <th>Action</th>
-      <th>Objectid</th>
-      <th>Generatedid</th>
-      <th>Generatedendedattime</th>
+      <th>object_id</th>
+      <th>generated_id</th>
+      <th>generated_ended_at_time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +17,11 @@
   <tbody>
     <% @assessment_events.each do |assessment_event| %>
       <tr>
-        <td><%= assessment_event.actorId %></td>
+        <td><%= assessment_event.actor_id %></td>
         <td><%= assessment_event.action %></td>
-        <td><%= assessment_event.objectId %></td>
-        <td><%= assessment_event.generatedId %></td>
-        <td><%= assessment_event.generatedEndedAtTime %></td>
+        <td><%= assessment_event.object_id %></td>
+        <td><%= assessment_event.generated_id %></td>
+        <td><%= assessment_event.generated_ended_at_time %></td>
         <td><%= link_to 'Show', assessment_event %></td>
         <td><%= link_to 'Edit', edit_assessment_event_path(assessment_event) %></td>
         <td><%= link_to 'X', assessment_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
