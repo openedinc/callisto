@@ -1,6 +1,5 @@
 class AssessmentEventsController < ApplicationController
   before_action :set_assessment_event, only: [:show, :edit, :update, :destroy]
-  validates_uniqueness_of :generated_id
 
   def dedupe
 
