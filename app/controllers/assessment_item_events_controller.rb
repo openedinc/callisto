@@ -9,12 +9,26 @@ class AssessmentItemEventsController < ApplicationController
   #     "object_id"
   #     "generated_id"
   def index
-    @assessment_item_events = AssessmentItemEvent.search(
-      actor_id: params[:actor_id],
-      action: params[:action],
-      generated_id: params[:generated_id],
-      object_id: params[:object_id]
-    )
+    if params and params.size>0
+      @assessment_item_events = AssessmentItemEvent.search(
+        actor_id: params[:actor_id],
+        action: params[:action],
+        generated_id: params[:generated_id],
+        object_id: params[:object_id]
+      )
+    else
+      @assessment_item_events=AssessmentItemEvent.all
+    end
+
+    respond_to do |format|
+      if @assessment_event.save
+        format.html { redirect_to @assessment_event, notice: 'Assessment event was successfully created.' }
+        format.json { render :show, status: :created, location: @assessment_event }
+      else
+        format.html { render :new }
+        format.json { render json: @assessment_event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /assessment_item_events/1
