@@ -14,7 +14,7 @@ class CaliperEventsController < ApplicationController
     AssessmentItemEvent.delete_all
     OutcomeEvent.delete_all
     MediaEvent.delete_all
-    redirect_to "/caliper_events/index"
+    redirect_to "/caliper_events"
   end
 
   # GET /caliper_events/1
