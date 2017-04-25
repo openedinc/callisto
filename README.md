@@ -164,7 +164,7 @@ Various queries on AssessmentItemEvents can be performed with the assessment_ite
 
 Parameters include:
 * actor_id - the ID of the assessment item taker, e.g. "https://example.edu/user/554433"
-* action_id - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed"
+* action - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed"
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
 * generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
 
@@ -210,7 +210,7 @@ Various queries on MediaEvents can be performed with the media_events.json endpo
 
 Parameters include:
 * actor_id - the ID of the media viewer, e.g. "https://example.edu/user/554433"
-* action_id - what happened with the video, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
+* action - what happened with the video, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
 * object_id - the URL of the video itself, e.g. "https://example.com/super-media-tool/video/1225"
 
 Example REST call (all outcome events for specified user) :
