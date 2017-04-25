@@ -8,6 +8,14 @@ class CaliperEventsController < ApplicationController
     @caliper_events = CaliperEvent.order(:created_at)
   end
 
+  def clear
+    CaliperEvent.delete_all
+    AssessmentEvent.delete_all
+    AssessmentItemEvent.delete_all
+    OutcomeEvent.delete_all
+    MediaEvent.delete_all 
+  end
+
   # GET /caliper_events/1
   # GET /caliper_events/1.json
   def show

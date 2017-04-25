@@ -170,13 +170,13 @@ t.string   "generated_ended_at_time"
         p "Subevent #{se}"
         type=se["@type"]
         case type
-        when "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent"
+        when "http://purl.imsglobal.org/caliper/v1/AssessmentItem"
           ae=parseAssessmentItem(se)
-        when "http://purl.imsglobal.org/caliper/v1/OutcomeEvent"
+        when "http://purl.imsglobal.org/caliper/v1/Outcome"
           o=parseOutcome(se)
-        when "http://purl.imsglobal.org/caliper/v1/AssessmentEvent"
+        when "http://purl.imsglobal.org/caliper/v1/Assessment"
           a=parseAssessment(se)
-        when "http://purl.imsglobal.org/caliper/v1/MediaEvent"
+        when "http://purl.imsglobal.org/caliper/v1/Media"
           m=parseMedia(se)
         end
       end
