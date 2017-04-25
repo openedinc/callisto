@@ -28,9 +28,10 @@ t.integer  "generated_count"
 t.datetime "generated_started_at_time"
 =end
   def parseAssessmentItem(e)
+    p "Parsing AssessmentItem"
     ai=AssessmentItemEvent.new
     ai.actor_id=e["actor"]["@id"] if e["actor"]
-    ai.action=e["action"]
+    ai.action=e["action"] if e["action"]
     if e["object"]
       ai.object_id=e["object"]["@id"]
       ai.is_part_of=e["object"]["is_part_of"]["@id"] if e["object"]["is_part_of"]
@@ -86,6 +87,7 @@ t.string   "generated_scored_by"
 
 =end
   def parseOutcome(e)
+    p "Parsing Outcome"
     o=OutcomeEvent.new
     o.actor_id=e["actor"]["@id"] if e["actor"]
     o.action=e["action"]
@@ -130,6 +132,7 @@ t.string   "generated_ended_at_time"
 
 =end
   def parseAssessment(e)
+    p "Parsing Assessment"
     a=AssessmentEvent.new
     a.actor_id=e["actor"]["@id"] if e["actor"]
     a.action=e["action"]
@@ -149,6 +152,7 @@ t.string   "generated_ended_at_time"
   end
 
   def parseMedia(e)
+    p "Parsing Media"
     m=MediaEvent.new
     m.actor_id=e["actor"]["@id"] if e["actor"]
     m.action=e["action"]
