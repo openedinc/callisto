@@ -5,14 +5,14 @@
 <table border="1">
   <thead>
     <tr>
-      <th>actor_id</th>
+      <th>Actor</th>
       <th>Action</th>
-      <th>object_id</th>
-      <th>max_score</th>
-      <th>is_part_of</th>
-      <th>generated_id</th>
-      <th>generated_count</th>
-      <th>generated_started_at_time</th>
+      <th>Object</th>
+      <th>Max Score</th>
+      <th>Is Part Of</th>
+      <th>Generated</th>
+      <th>Count</th>
+      <th>Started At</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -30,7 +30,7 @@
         <td><%= assessment_item_event.generated_started_at_time %></td>
         <td><%= link_to 'Show', assessment_item_event %></td>
         <td><%= link_to 'Edit', edit_assessment_item_event_path(assessment_item_event) %></td>
-        <td><%= link_to 'Destroy', assessment_item_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'X', assessment_item_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
