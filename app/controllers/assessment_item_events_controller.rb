@@ -4,14 +4,16 @@ class AssessmentItemEventsController < ApplicationController
   # GET /assessment_item_events
   # GET /assessment_item_events.json
   # allow query by follow params:
-  #     "actor_id"
-  #     "action"
-  #     "object_id"
+  #actor_id - the ID of the assessment item taker, e.g. "https://example.edu/user/554433"
+  #action - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed"
+  #object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
+  #generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
   def index
     @assessment_item_events=AssessmentItemEvent.search(
       actor_id: params[:actor_id],
       action: params[:action],
-      object_id: params[:object_id]
+      object_id: params[:object_id],
+      generated_id: params[:generated_id]
     )
   end
 

@@ -1,14 +1,23 @@
 class AssessmentEventsController < ApplicationController
   before_action :set_assessment_event, only: [:show, :edit, :update, :destroy]
 
-  def dedupe
-
-  end
-
   # GET /assessment_events
   # GET /assessment_events.json
+=begin
+search based on these arguments
+  actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
+action - what happened with the assessment, e.g."http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
+object_id - the ID of the assessment, e.g. "https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264"
+generated_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+=end
+
   def index
-    @assessment_events = AssessmentEvent.all
+    @assessment_events = AssessmentEvent.search(
+      actor_id: params[:actor_id],
+      action: params[:action],
+      object_id: params[:object_id],
+      generated_id: [params[:generated_id]
+    )
   end
 
   # GET /assessment_events/1

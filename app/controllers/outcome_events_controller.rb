@@ -8,7 +8,7 @@ Parameters include:
 * actor_id - the ID of the assessment taker, e.g. "https://example.edu/user/554433"
 * object_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
 * object_assignable - the ID of the assessment, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/0011"
-* generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+* generated ID - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
 =end
   def index
     @outcome_events = OutcomeEvent.search(
