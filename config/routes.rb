@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :assessment_events
   resources :media_events
   resources :caliper_events do
-    member do
+    collection do
       get 'clear'
     end
   end
