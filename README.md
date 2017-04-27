@@ -81,7 +81,8 @@ Below is a sample Caliper event (specifically MediaEvent) based on one of the [I
        "dateModified": null
      }
    ]
-}
+  },
+  "eventTime": "2015-09-15T10:15:00.000Z"
 }
 ```
 
