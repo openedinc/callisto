@@ -44,114 +44,45 @@ To store Caliper events in Callisto use the CaliperEvent model Create method.  I
 
 #### Sample Caliper Event
 
-Below is a sample Caliper event (specifically AssessmentItemCompleted) from the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures/blob/master/src/test/resources/fixtures/caliperAssessmentItemCompletedEvent.json)
+Below is a sample Caliper event (specifically MediaEvent) based on one of the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures-public/blob/public/src/test/resources/fixtures/caliperMediaEvent.json). Of particular note is the alignedLearningObjective attribute as that was not fleshed out in the fixture example. It also uses IMS CASE item URLs for the alignedLearningObjective's ID and in an extension attribute called "case_item".   Other parts of the MediaEvent that aren't required are left out for simplicity.  
 
 ```json
-  {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-    "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
-    "actor": {
-      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-      "@id": "https://example.edu/user/554433",
-      "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
-      "name": null,
-      "description": null,
-      "extensions": {},
-      "dateCreated": "2015-08-01T06:00:00.000Z",
-      "dateModified": "2015-09-02T11:30:00.000Z"
-    },
-    "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed",
-    "object": {
-      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-      "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001",
-      "@type": "http://purl.imsglobal.org/caliper/v1/AssessmentItem",
-      "name": "Assessment Item 1",
-      "description": null,
-      "objectType": [],
-      "alignedLearningObjective": [],
-      "keywords": [],
-      "is_part_of": {
-        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-        "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
-        "@type": "http://purl.imsglobal.org/caliper/v1/Assessment",
-        "name": "American Revolution - Key Figures Assessment",
-        "description": null,
-        "objectType": [],
-        "alignedLearningObjective": [],
-        "keywords": [],
-        "is_part_of": null,
-        "extensions": {},
-        "dateCreated": "2015-08-01T06:00:00.000Z",
-        "dateModified": "2015-09-02T11:30:00.000Z",
-        "datePublished": "2015-08-15T09:30:00.000Z",
-        "version": "1.0",
-        "dateToActivate": "2015-08-16T05:00:00.000Z",
-        "dateToShow": "2015-08-16T05:00:00.000Z",
-        "dateToStartOn": "2015-08-16T05:00:00.000Z",
-        "dateToSubmit": "2015-09-28T11:59:59.000Z",
-        "maxAttempts": 2,
-        "maxSubmits": 2,
-        "max_score": 3.0
-      },
-      "extensions": {},
-      "dateCreated": null,
-      "dateModified": null,
-      "datePublished": null,
-      "version": "1.0",
-      "dateToActivate": null,
-      "dateToShow": null,
-      "dateToStartOn": null,
-      "dateToSubmit": null,
-      "maxAttempts": 2,
-      "maxSubmits": 2,
-      "max_score": 1.0,
-      "isTimeDependent": false
-    },
-    "target": null,
-    "generated": {
-      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-      "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001",
-      "@type": "http://purl.imsglobal.org/caliper/v1/FillinBlankResponse",
-      "name": null,
-      "description": null,
-      "extensions": {},
-      "dateCreated": "2015-08-01T06:00:00.000Z",
-      "dateModified": null,
-      "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
-      "actor": "https://example.edu/user/554433",
-      "attempt": {
-        "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-        "@id": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/attempt/789",
-        "@type": "http://purl.imsglobal.org/caliper/v1/Attempt",
-        "name": null,
-        "description": null,
-        "extensions": {},
-        "dateCreated": "2015-08-01T06:00:00.000Z",
-        "dateModified": null,
-        "assignable": "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001",
-        "actor": "https://example.edu/user/554433",
-        "count": 1,
-        "startedAtTime": "2015-09-15T10:15:00.000Z",
-        "endedAtTime": null,
-        "duration": null
-      },
-      "values": ["2 July 1776"],
-      "startedAtTime": "2015-09-15T10:15:00.000Z",
-      "endedAtTime": null,
-      "duration": null
-    },
-    "eventTime": "2015-09-15T10:15:00.000Z",
-    "edApp": {
-      "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
-      "@id": "https://example.com/super-assessment-tool",
-      "@type": "http://purl.imsglobal.org/caliper/v1/SoftwareApplication",
-      "name": "Super Assessment Tool",
-      "description": null,
-      "extensions": {},
-      "dateCreated": "2015-08-01T06:00:00.000Z",
-      "dateModified": null
-    }
-  }
+{
+
+ "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+ "@type": "http://purl.imsglobal.org/caliper/v1/MediaEvent",
+ "actor": {
+   "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+   "@id": "https://example.edu/user/554433",
+   "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
+   "name": null,
+   "description": null,
+   "extensions": {},
+   "dateCreated": "2015-08-01T06:00:00.000Z",
+   "dateModified": "2015-09-02T11:30:00.000Z"
+ },
+ "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Ended",
+ "object": {
+   "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context"
+   "@id": "https://example.com/super-media-tool/video/1225",
+   "@type": "http://purl.imsglobal.org/caliper/v1/VideoObject",
+   "name": "American Revolution - Key Figures Video",
+   "description": null,
+   "objectType": [],
+   "alignedLearningObjective": [
+     {
+       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
+       "@id": "http://opensalt.opened.com/cftree/item/19033",
+       "@type": "http://purl.imsglobal.org/caliper/v1/LearningObjective",
+       "name": null,
+       "description": null,
+       "extensions": {“case_item”: “http://opensalt.opened.com/cftree/item/19033”},
+       "dateCreated": "2015-08-01T06:00:00.000Z",
+       "dateModified": null
+     }
+   ]
+}
+}
 ```
 
 ### Querying for Event Types
