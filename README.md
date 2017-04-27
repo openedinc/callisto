@@ -164,10 +164,10 @@ Various queries on AssessmentItemEvents can be performed with the assessment_ite
 
 Parameters include:
 * actor_id - the ID of the assessment item taker, e.g. "https://example.edu/user/554433"
-* action - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed"
+* action_id - what happened with the assessment item, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Completed"
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
 * generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
-
+* learning_objective - all OutcomeEvents for a particular learning objective, expressed as a CASE URL
 
 Example REST call (all assessment item events for specified user):
 ```sh
@@ -183,6 +183,7 @@ Parameters include:
 * object_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678"
 * object_assignable - the ID of the assessment, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/0011"
 * generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+* learning_objective - all OutcomeEvents for a particular learning objective, expressed as a CASE URL
 
 Example REST call (all outcome events for specified user) :
 ```
@@ -198,6 +199,7 @@ Parameters include:
 * action - what happened with the assessment, e.g."http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
 * object_id - the ID of the assessment, e.g. "https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264"
 * generated_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
+* learning_objective - all OutcomeEvents for a particular learning objective, expressed as a CASE URL
 
 Example REST call (all outcome events for specified user) :
 ```
@@ -210,8 +212,9 @@ Various queries on MediaEvents can be performed with the media_events.json endpo
 
 Parameters include:
 * actor_id - the ID of the media viewer, e.g. "https://example.edu/user/554433"
-* action - what happened with the video, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Paused"
+* action_id - what happened with the video, e.g. "http://purl.imsglobal.org/vocab/caliper/v1/action#Ended"
 * object_id - the URL of the video itself, e.g. "https://example.com/super-media-tool/video/1225"
+* learning_objective - the learning objective of the video, expressed as the CASE URL for the standard, e.g. http://opensalt.opened.com/cftree/item/19033
 
 Example REST call (all outcome events for specified user) :
 ```
