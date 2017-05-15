@@ -36,15 +36,20 @@ All Callisto code is open source via [Apache License 2.0](https://www.apache.org
 To store Caliper events in Callisto use the CaliperEvent model Create method.  In the example below the sensor value is just a unique URI (it happens to be a unique URI on opened.com).  The data consists of multiple valid Caliper events.
 
 ```
-  curl -d '"payload":"{ \
-  'sensor': 'https://opened.com/sensors/MediaEvent',\
-  'sendTime':'2017-03-29T00:29:26.154Z',\
-  'data':'[{event 1},{event 2}]'}"' https://localhost:3000/caliper_events
+  curl -d '{"caliper_event":
+             {"payload":
+              "{'sensor': 'https://opened.com/sensors/MediaEvent',\
+                'sendTime':'2017-03-29T00:29:26.154Z',\
+                'data':'[{event 1},{event 2}]'\
+               }\
+             }\
+           }'\
+        https://localhost:3000/caliper_events
 ```
 
 #### Sample Caliper Event
 
-Below is a sample Caliper event (specifically MediaEvent) based on one of the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures-public/blob/public/src/test/resources/fixtures/caliperMediaEvent.json). Of particular note is the alignedLearningObjective attribute as that was not fleshed out in the fixture example. It also uses IMS CASE item URLs for the alignedLearningObjective's ID and in an extension attribute called "case_item".   Other parts of the MediaEvent that aren't required are left out for simplicity.  
+Below is a sample Caliper event (specifically MediaEvent) based on one of the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures-public/blob/public/src/test/resources/fixtures/caliperMediaEvent.json). Of particular note is the learningObjectives attribute as that was not fleshed out in the fixture example. It also uses IMS CASE item URLs for the learningObjective's ID and in an extension attribute called "case_item".   Other parts of the MediaEvent that aren't required are left out for simplicity.  
 
 ```json
 {
