@@ -36,11 +36,10 @@ All Callisto code is open source via [Apache License 2.0](https://www.apache.org
 To store Caliper events in Callisto use the CaliperEvent model Create method.  In the example below the sensor value is just a unique URI (it happens to be a unique URI on opened.com).  The data consists of multiple valid Caliper events.
 
 ```
-  curl -d '{"caliper_event":
+  curl -H "Content-Type: application/json" -d '{"caliper_event":
              {"payload":
-              "{'sensor': 'https://opened.com/sensors/MediaEvent',\
-                'sendTime':'2017-03-29T00:29:26.154Z',\
-                'data':'[{event 1},{event 2}]'\
+              "{"sensor": "https://opened.com/sensors/MediaEvent",\
+                "data":"[{event 1},{event 2}]"\
                }\
              }\
            }'\
