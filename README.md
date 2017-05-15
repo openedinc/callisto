@@ -50,39 +50,26 @@ Below is a sample Caliper event (specifically MediaEvent) based on one of the [I
 {
 
  "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
- "@type": "http://purl.imsglobal.org/caliper/v1/MediaEvent",
+ "@type": "MediaEvent",
  "actor": {
-   "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
    "@id": "https://example.edu/user/554433",
-   "@type": "http://purl.imsglobal.org/caliper/v1/lis/Person",
-   "name": null,
-   "description": null,
-   "extensions": {},
-   "dateCreated": "2015-08-01T06:00:00.000Z",
-   "dateModified": "2015-09-02T11:30:00.000Z"
+   "@type": "Person",
+   "dateCreated": "2015-08-01T06:00:00.000Z"
  },
- "action": "http://purl.imsglobal.org/vocab/caliper/v1/action#Ended",
+ "action": "Ended",
  "object": {
-   "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context"
    "@id": "https://example.com/super-media-tool/video/1225",
-   "@type": "http://purl.imsglobal.org/caliper/v1/VideoObject",
+   "VideoObject",
    "name": "American Revolution - Key Figures Video",
-   "description": null,
-   "objectType": [],
-   "alignedLearningObjective": [
+   "learningObjectives": [
      {
-       "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
        "@id": "http://opensalt.opened.com/cftree/item/19033",
-       "@type": "http://purl.imsglobal.org/caliper/v1/LearningObjective",
-       "name": null,
-       "description": null,
+       "@type": "LearningObjective",
        "extensions": {“case_item”: “http://opensalt.opened.com/cftree/item/19033”},
-       "dateCreated": "2015-08-01T06:00:00.000Z",
-       "dateModified": null
+       "dateCreated": "2015-08-01T06:00:00.000Z"
      }
    ]
-  },
-  "eventTime": "2015-09-15T10:15:00.000Z"
+  }
 }
 ```
 
