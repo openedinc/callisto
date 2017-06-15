@@ -62,7 +62,7 @@ Below is a sample Caliper event (specifically MediaEvent) based on one of the [I
      {
        "@id": "http://opensalt.opened.com/cftree/item/19033",
        "@type": "LearningObjective",
-       "extensions": {“case_item”: “http://opensalt.opened.com/cftree/item/19033”},
+       "extensions": {“caseItemURI”: “http://opensalt.opened.com/cftree/item/19033”},
        "dateCreated": "2015-08-01T06:00:00.000Z"
      }
    ]
