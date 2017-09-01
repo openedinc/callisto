@@ -26,7 +26,7 @@
   },
   "addons": [
     "heroku-postgresql",
-    "heroku-redis"
+    "heroku-redis:hobby-dev"
   ],
   "buildpacks": [
     {
