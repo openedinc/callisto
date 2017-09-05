@@ -31,12 +31,33 @@ All Callisto code is open source via [Apache License 2.0](https://www.apache.org
 
 ## Endpoints
 
+### Getting your token
+
+You will need to sign in to get your access-token, uid, and client.  These attributes will be used in all subsequent requests to authenticate your user.
+
+####Request
+```
+  curl -XPOST -v -H 'Content-Type: application/json' https://www.opencallisto.org/auth/sign_in -d '{"email": "mail@example.com", "password": "password" }'
+```
+####Response
+```
+  access-token: lW1c60hYkRwAinzUqgLfsQ
+  token-type: Bearer
+  client: W_xCQuggzNOVeCnNZbjKFw
+  expiry: 1426610121
+  uid: testemail@mydomain.com
+```
+
+####Every other request should have headers set similar to below
+```
+  curl -XGET -v -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://www.opencallisto.org/example_endpoint
+```
 ### Populating Caliper Events
 
 To store Caliper events in Callisto use the CaliperEvent model Create method.  In the example below the sensor value is just a unique URI (it happens to be a unique URI on opened.com).  The data consists of multiple valid Caliper events.
 
 ```
-  curl -H "Content-Type: application/json" -d '{"caliper_event":{"payload":{"sensor": "https://opened.com/sensors/MediaEvent","data":[{"a":"1"},{"b":"2"}]}}}' http://localhost:3000/caliper_events
+  curl -H "Content-Type: application/json" -d '{"caliper_event":{"payload":{"sensor": "https://opened.com/sensors/MediaEvent","data":[{"a":"1"},{"b":"2"}]}}}' https://www.opencallisto.org/caliper_events
 ```
 
 #### Sample Caliper Event
@@ -119,7 +140,7 @@ Parameters include:
 
 Example REST call (all outcome events for specified user) :
 ```
-  curl https://opencallisto.org/assessment_events.json?actor_id=https://example.edu/user/554433
+  curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/assessment_events.json?actor_id=https://example.edu/user/554433
 ```
 
 #### MediaEvents
@@ -134,7 +155,7 @@ Parameters include:
 
 Example REST call (all outcome events for specified user) :
 ```
-  curl https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
+  curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
 ```
 
 ## Credits

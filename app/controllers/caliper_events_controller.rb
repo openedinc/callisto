@@ -1,7 +1,6 @@
 class CaliperEventsController < ApplicationController
   include CaliperEventsHelper
   before_action :set_caliper_event, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token, if: :api_request?
   # GET /caliper_events
   # GET /caliper_events.json
   def index
@@ -77,10 +76,6 @@ class CaliperEventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_caliper_event
       @caliper_event = CaliperEvent.find(params[:id])
-    end
-
-    def api_request?
-      request.format.json? || request.format.xml?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
