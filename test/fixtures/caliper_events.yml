@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  payload: 
+  payload: "{\"data\":[{\"action\":\"graded\"},{\"target\":\"graded\"}]}"
   time: 2017-03-30 11:01:03
 
 two:
-  payload: 
+  payload: "{\"data\":[{\"action\":\"graded\"},{\"target\":\"graded\"}]}"
   time: 2017-03-30 11:01:03

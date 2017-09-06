@@ -79,8 +79,8 @@ t.string   "actor_id"
 t.string   "action"
 t.string   "object_id"
 t.string   "assignable_id"
-t.integer  "assignablemax_score"
-t.string   "assignableis_part_of"
+t.integer  "assignable_max_score"
+t.string   "assignable_is_part_of"
 t.string   "generated_id"
 t.integer  "generated_total_score"
 t.string   "generated_scored_by"
@@ -98,8 +98,8 @@ t.string   "generated_scored_by"
     end
     if e["assignable"]
       o.assignable_id=e["assignable"]["@id"]
-      o.assignablemax_score=e["assignable"]["max_score"]
-      o.assignableis_part_of=e["assignable"]["is_part_of"]["@id"] if o.assignableis_part_of=e["assignable"]["is_part_of"]
+      o.assignable_max_score=e["assignable"]["max_score"]
+      o.assignable_is_part_of=e["assignable"]["is_part_of"]["@id"] if o.assignable_is_part_of=e["assignable"]["is_part_of"]
     end
     if e["generated"]
       o.generated_id=e["generated"]["@id"]

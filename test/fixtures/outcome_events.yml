@@ -5,8 +5,8 @@ one:
   action: MyString
   object_id: MyString
   assignable_id: MyString
-  assignablemax_score: 1
-  assignableis_part_of: MyString
+  assignable_max_score: 1
+  assignable_is_part_of: MyString
   generated_id: MyString
   generated_total_score: 1
   generated_scored_by: MyString
@@ -16,8 +16,8 @@ two:
   action: MyString
   object_id: MyString
   assignable_id: MyString
-  assignablemax_score: 1
-  assignableis_part_of: MyString
+  assignable_max_score: 1
+  assignable_is_part_of: MyString
   generated_id: MyString
   generated_total_score: 1
   generated_scored_by: MyString

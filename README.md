@@ -39,7 +39,7 @@ You will need to sign in to get your access-token, uid, and client.  These attri
 ```
   curl -XPOST -v -H 'Content-Type: application/json' https://www.opencallisto.org/auth/sign_in -d '{"email": "mail@example.com", "password": "password" }'
 ```
-####Response
+####Response Headers
 ```
   access-token: lW1c60hYkRwAinzUqgLfsQ
   token-type: Bearer
