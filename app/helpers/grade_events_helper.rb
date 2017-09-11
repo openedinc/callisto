@@ -1,0 +1,2 @@
+module GradeEventsHelper
+end

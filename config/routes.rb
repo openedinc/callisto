@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get 'clear'
     end
   end
-  resources :outcome_events
+  resources :grade_events
   resources :assessment_item_events
   root to: 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

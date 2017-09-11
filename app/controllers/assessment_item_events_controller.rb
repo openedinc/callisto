@@ -14,7 +14,7 @@ class AssessmentItemEventsController < ApplicationController
       action: params[:action],
       object_id: params[:object_id],
       generated_id: params[:generated_id]
-    )
+    ).page(page_params)
   end
 
   # GET /assessment_item_events/1

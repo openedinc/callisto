@@ -7,3 +7,15 @@ one:
 two:
   payload: "{\"data\":[{\"action\":\"graded\"},{\"target\":\"graded\"}]}"
   time: 2017-03-30 11:01:03
+
+assessment_event:
+  payload: "{\"data\":[{\"@context\":\"http://purl.imsglobal.org/ctx/caliper/v1p1\"},{\"id\": \"urn:uuid:27734504-068d-4596-861c-2315be33a2a2\"},{\"type\": \"AssessmentEvent\"},{\"action\":\"graded\"},{\"actor\": {\"id\": \"https://example.edu/users/554433\",\"type\": \"Person\"}}]}"
+
+assessment_event_item:
+  payload: "{\"data\":[{\"@context\":\"http://purl.imsglobal.org/ctx/caliper/v1p1\"},{\"id\": \"urn:uuid:e5891791-3d27-4df1-a272-091806a43dfb\"},{\"type\": \"AssessmentEventItem\"},{\"action\":\"completed\"},{\"actor\": {\"id\": \"https://example.edu/users/554433\",\"type\": \"Person\"}}]}"
+
+grade_event_item:
+  payload: "{\"data\":[{\"@context\":\"http://purl.imsglobal.org/ctx/caliper/v1p1\"},{\"id\": \"urn:uuid:ea50ca17f-5971-47bb-8fca-4e6e6879001d\"},{\"type\": \"GradeEvent\"},{\"action\":\"graded\"},{\"actor\": {\"id\": \"https://example.edu/users/554433\",\"type\": \"Person\"}}]}"
+
+media_event_item:
+  payload: "{\"data\":[{\"@context\":\"http://purl.imsglobal.org/ctx/caliper/v1p1\"},{\"id\": \"urn:uuid:956b4a02-8de0-4991-b8c5-b6eebb6b4cab\"},{\"type\": \"GradeEvent\"},{\"action\":\"paused\"},{\"actor\": {\"id\": \"https://example.edu/users/554433\",\"type\": \"Person\"}}]}"

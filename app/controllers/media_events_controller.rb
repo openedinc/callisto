@@ -8,7 +8,7 @@ class MediaEventsController < ApplicationController
       actor_id: params[:actor_id],
       action: params[:action],
       object_id: params[:object_id]
-    )
+    ).page(page_params)
   end
 
   # GET /media_events/1

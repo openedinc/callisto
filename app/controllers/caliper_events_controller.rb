@@ -4,14 +4,14 @@ class CaliperEventsController < ApplicationController
   # GET /caliper_events
   # GET /caliper_events.json
   def index
-    @caliper_events = CaliperEvent.order(:created_at)
+    @caliper_events = CaliperEvent.order(:created_at).page(params[:page])
   end
 
   def clear
     CaliperEvent.delete_all
     AssessmentEvent.delete_all
     AssessmentItemEvent.delete_all
-    OutcomeEvent.delete_all
+    GradeEvent.delete_all
     MediaEvent.delete_all
     redirect_to "/caliper_events"
   end

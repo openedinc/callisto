@@ -12,5 +12,9 @@ class ApplicationController < ActionController::Base
       request.format.json? || request.format.xml?
     end
 
+    def page_params
+      params[:page] || 1
+    end
+
 
 end

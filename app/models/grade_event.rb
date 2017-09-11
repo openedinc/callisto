@@ -1,4 +1,4 @@
-class OutcomeEvent < ApplicationRecord
+class GradeEvent < ApplicationRecord
   def self.search(actor_id: nil,  object_id: nil, object_assignable: nil, generated_id: nil)
     unscoped
       .with_actor_id(actor_id)

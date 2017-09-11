@@ -4,7 +4,7 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = user(:admin)
     @auth_headers = @user.create_new_auth_token
-    @caliper_event = caliper_events(:one)
+    @caliper_event = caliper_events(:assessment_event)
   end
 
   test "should get index" do

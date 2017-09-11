@@ -1,6 +1,7 @@
 require 'test_helper'
 
-class OutcomeEventTest < ActiveSupport::TestCase
+class GradeEventTest < ActiveSupport::TestCase
+
   # test "the truth" do
   #   assert true
   # end
