@@ -48,7 +48,7 @@ You will need to sign in to get your access-token, uid, and client.  These attri
   uid: testemail@mydomain.com
 ```
 
-####Every other request should have headers set similar to below
+#### Every other request should have headers set similar to below
 ```
   curl -XGET -v -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://www.opencallisto.org/example_endpoint
 ```
