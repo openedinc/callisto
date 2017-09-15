@@ -1,10 +1,10 @@
-<%= form_for(outcome_event) do |f| %>
-  <% if outcome_event.errors.any? %>
+<%= form_for(grade_event) do |f| %>
+  <% if grade_event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(outcome_event.errors.count, "error") %> prohibited this outcome_event from being saved:</h2>
+      <h2><%= pluralize(grade_event.errors.count, "error") %> prohibited this grade_event from being saved:</h2>
 
       <ul>
-      <% outcome_event.errors.full_messages.each do |message| %>
+      <% grade_event.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -32,13 +32,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :assignablemax_score %>
-    <%= f.number_field :assignablemax_score %>
+    <%= f.label :assignable_max_score %>
+    <%= f.number_field :assignable_max_score %>
   </div>
 
   <div class="field">
-    <%= f.label :assignableis_part_of %>
-    <%= f.text_field :assignableis_part_of %>
+    <%= f.label :assignable_is_part_of %>
+    <%= f.text_field :assignable_is_part_of %>
   </div>
 
   <div class="field">

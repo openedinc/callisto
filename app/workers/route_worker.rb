@@ -59,7 +59,7 @@ t.datetime "generated_started_at_time"
 =begin
 PARSE
 {\"eventTime\"=>\"2017-04-11T17:59:50.452Z\", \"federatedSession\"=>\"81403\", \"edApp\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/SoftwareApplication\", \"@id\"=>\"https://myunitylogin.com/opened\", \"name\"=>\"Unity\"}, \"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\",
-\"@type\"=>\"http://purl.imsglobal.org/caliper/v1/OutcomeEvent\",
+\"@type\"=>\"http://purl.imsglobal.org/caliper/v1/gradeEvent\",
 \"actor\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/lis/Person\", \"@id\"=>\"https://A0501617.opened.com/user/polina_teacher_240\"}, \"action\"=>\"http://purl.imsglobal.org/vocab/caliper/v1/action#Graded\",
 \"object\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/Attempt\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/attempt/8eeb8415-d3c3-421e-a1c1-e84e58db611a\",
 \"assignable\"=>{\"@context\"=>\"http://purl.imsglobal.org/ctx/caliper/v1/Context\", \"@type\"=>\"http://purl.imsglobal.org/caliper/v1/AssessmentItem\", \"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264/item_bank/2b249051-1bfe-49ce-ba28-cea2ac907807/item/1094272\", \"max_score\"=>1, \"is_part_of\"=>{\"@id\"=>\"https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264\"}}, \"count\"=>1, \"startedAtTime\"=>\"2017-04-11T17:59:47.600Z\", \"endedAtTime\"=>nil},
@@ -79,34 +79,34 @@ t.string   "actor_id"
 t.string   "action"
 t.string   "object_id"
 t.string   "assignable_id"
-t.integer  "assignablemax_score"
-t.string   "assignableis_part_of"
+t.integer  "assignable_max_score"
+t.string   "assignable_is_part_of"
 t.string   "generated_id"
 t.integer  "generated_total_score"
 t.string   "generated_scored_by"
 
 =end
-  def parseOutcome(e)
-    p "Parsing Outcome"
-    o=OutcomeEvent.new
+  def parseGrade(e)
+    p "Parsing grade"
+    o=GradeEvent.new
     o.actor_id=e["actor"]["@id"] if e["actor"]
     o.action=e["action"]
     if e["object"]
       o.object_id=e["object"]["@id"]
     else
-      p "No object attribute in OutcomeEvent"
+      p "No object attribute in GradeEvent"
     end
     if e["assignable"]
       o.assignable_id=e["assignable"]["@id"]
-      o.assignablemax_score=e["assignable"]["max_score"]
-      o.assignableis_part_of=e["assignable"]["is_part_of"]["@id"] if o.assignableis_part_of=e["assignable"]["is_part_of"]
+      o.assignable_max_score=e["assignable"]["max_score"]
+      o.assignable_is_part_of=e["assignable"]["is_part_of"]["@id"] if o.assignable_is_part_of=e["assignable"]["is_part_of"]
     end
     if e["generated"]
       o.generated_id=e["generated"]["@id"]
       o.generated_total_score=e["generated"]["generated_total_score"]
       o.generated_scored_by=e["generated"]["scoredBy"]
     else
-      p "No generated attribute in OutcomeEvent"
+      p "No generated attribute in GradeEvent"
     end
     o.save
     o
@@ -172,15 +172,15 @@ t.string   "generated_ended_at_time"
       subevents=result["data"]
       subevents.each do |se|
         p "Subevent #{se}"
-        type=se["@type"]
+        type=se["type"]
         case type
-        when "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent"
+        when "AssessmentItemEvent"
           ae=parseAssessmentItem(se)
-        when "http://purl.imsglobal.org/caliper/v1/OutcomeEvent"
-          o=parseOutcome(se)
-        when "http://purl.imsglobal.org/caliper/v1/AssessmentEvent"
+        when "GradeEvent"
+          o=parseGrade(se)
+        when "AssessmentEvent"
           a=parseAssessment(se)
-        when "http://purl.imsglobal.org/caliper/v1/MediaEvent"
+        when "MediaEvent"
           m=parseMedia(se)
         end
       end

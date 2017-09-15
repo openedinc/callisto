@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>actor_id:</strong>
+  <%= @grade_event.actor_id %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @grade_event.action %>
+</p>
+
+<p>
+  <strong>object_id:</strong>
+  <%= @grade_event.object_id %>
+</p>
+
+<p>
+  <strong>assignable_id:</strong>
+  <%= @grade_event.assignable_id %>
+</p>
+
+<p>
+  <strong>assignable_max_score:</strong>
+  <%= @grade_event.assignable_max_score %>
+</p>
+
+<p>
+  <strong>assignable_is_part_of:</strong>
+  <%= @grade_event.assignable_is_part_of %>
+</p>
+
+<p>
+  <strong>generated_id:</strong>
+  <%= @grade_event.generated_id %>
+</p>
+
+<p>
+  <strong>generated_total_score:</strong>
+  <%= @grade_event.generated_total_score %>
+</p>
+
+<p>
+  <strong>generated_scored_by:</strong>
+  <%= @grade_event.generated_scored_by %>
+</p>
+
+<%= link_to 'Edit', edit_grade_event_path(@grade_event) %> |
+<%= link_to 'Back', grade_events_path %>
