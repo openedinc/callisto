@@ -80,7 +80,7 @@ class CaliperEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caliper_event_params
-      params.require("caliper_event").permit("payload", "eventTime", "time")
+      params.require(:caliper_event).permit(:payload:{}, :eventTime, :time)
     end
 
 end
