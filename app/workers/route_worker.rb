@@ -168,24 +168,34 @@ t.string   "generated_ended_at_time"
   def perform(*args)
     events=CaliperEvent.where :routed==nil
     events.each do |e|
-      result= e.payload.is_a?(String) ? JSON.parse(e.payload) : e.payload
-      subevents=result["data"]
-      subevents.each do |se|
-        p "Subevent #{se}"
-        type=se["type"]
-        case type
-        when "AssessmentItemEvent"
-          ae=parseAssessmentItem(se)
-        when "GradeEvent"
-          o=parseGrade(se)
-        when "AssessmentEvent"
-          a=parseAssessment(se)
-        when "MediaEvent"
-          m=parseMedia(se)
+      result = e.payload.is_a?(String) ? JSON.parse(e.payload) : e.payload
+      #support array of events or single event
+      if result.key?("data")
+        result["data"].each do |se|
+          p "Subevent #{se}"
+          route_event(se)
         end
+      else
+        route_event(result)
       end
+
       e.routed=true
       e.save
     end
   end
+
+  def route_event(se)
+    type=se["type"]
+    case type
+    when "AssessmentItemEvent"
+      ae=parseAssessmentItem(se)
+    when "GradeEvent"
+      o=parseGrade(se)
+    when "AssessmentEvent"
+      a=parseAssessment(se)
+    when "MediaEvent"
+      m=parseMedia(se)
+    end
+  end
+
 end
