@@ -30,22 +30,22 @@ t.datetime "generated_started_at_time"
   def parseAssessmentItem(e)
     p "Parsing AssessmentItem"
     ai=AssessmentItemEvent.new
-    ai.actor_id=e["actor"]["@id"] if e["actor"]
+    ai.actor_id=e["actor"]["id"] if e["actor"]
     ai.action=e["action"] if e["action"]
     if e["object"]
-      ai.object_id=e["object"]["@id"]
-      ai.is_part_of=e["object"]["is_part_of"]["@id"] if e["object"]["is_part_of"]
+      ai.object_id=e["object"]["id"]
+      ai.is_part_of=e["object"]["is_part_of"]["id"] if e["object"]["is_part_of"]
       ai.max_score=e["object"]["max_score"]
     else
       p "No object attribute in AssessmentItem event"
     end
     if e["generated"]
       if e["generated"]["attempt"]
-        ai.generated_id=e["generated"]["attempt"]["@id"]
+        ai.generated_id=e["generated"]["attempt"]["id"]
         ai.generated_count=e["generated"]["attempt"]["count"]
         ai.generated_started_at_time=e["generated"]["startedAtTime"]
       else
-        ai.generated_id=e["generated"]["@id"]
+        ai.generated_id=e["generated"]["id"]
         ai.generated_count=e["generated"]["count"]
         ai.generated_started_at_time=e["generated"]["startedAtTime"]
       end
@@ -89,10 +89,10 @@ t.string   "generated_scored_by"
   def parseGrade(e)
     p "Parsing grade"
     o=GradeEvent.new
-    o.actor_id=e["actor"]["@id"] if e["actor"]
+    o.actor_id=e["actor"]["id"] if e["actor"]
     o.action=e["action"]
     if e["object"]
-      o.object_id=e["object"]["@id"]
+      o.object_id=e["object"]["id"]
     else
       p "No object attribute in GradeEvent"
     end
@@ -102,7 +102,7 @@ t.string   "generated_scored_by"
       o.assignable_is_part_of=e["assignable"]["is_part_of"]["@id"] if o.assignable_is_part_of=e["assignable"]["is_part_of"]
     end
     if e["generated"]
-      o.generated_id=e["generated"]["@id"]
+      o.generated_id=e["generated"]["id"]
       o.generated_total_score=e["generated"]["generated_total_score"]
       o.generated_scored_by=e["generated"]["scoredBy"]
     else
@@ -134,15 +134,15 @@ t.string   "generated_ended_at_time"
   def parseAssessment(e)
     p "Parsing Assessment"
     a=AssessmentEvent.new
-    a.actor_id=e["actor"]["@id"] if e["actor"]
+    a.actor_id=e["actor"]["id"] if e["actor"]
     a.action=e["action"]
     if e["object"]
-      a.object_id=e["object"]["@id"]
+      a.object_id=e["object"]["id"]
     else
       p "No object attribute in AssessmentEvent"
     end
     if e["generated"]
-      a.generated_id=e["generated"]["@id"]
+      a.generated_id=e["generated"]["id"]
       a.generated_ended_at_time=e["generated"]["generated_ended_at_time"]
     else
       p "No generated attribute in AssessmentEvent"
@@ -154,10 +154,10 @@ t.string   "generated_ended_at_time"
   def parseMedia(e)
     p "Parsing Media"
     m=MediaEvent.new
-    m.actor_id=e["actor"]["@id"] if e["actor"]
+    m.actor_id=e["actor"]["id"] if e["actor"]
     m.action=e["action"]
     if e["object"]
-      m.object_id=e["object"]["@id"]
+      m.object_id=e["object"]["id"]
     else
       p "No object attribute in MediaEvent"
     end
