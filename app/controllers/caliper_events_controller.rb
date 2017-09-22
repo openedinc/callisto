@@ -34,8 +34,8 @@ class CaliperEventsController < ApplicationController
   # POST /caliper_events
   # POST /caliper_events.json
   def create
-    #@caliper_event = CaliperEvent.new(payload: caliper_event_params[:payload])
-    @caliper_event = CaliperEvent.new(payload: params['caliper_event']['payload'])
+    puts "caliper_event_params is #{caliper_event_params.inspect}"
+    @caliper_event = CaliperEvent.new(payload: caliper_event_params[:payload])
     respond_to do |format|
       if @caliper_event.save
         format.html { redirect_to @caliper_event, notice: 'Caliper event was successfully created.' }
@@ -79,8 +79,8 @@ class CaliperEventsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # def caliper_event_params
-    #   params.require(:caliper_event).permit(:payload, :eventTime, :time)
-    # end
+    def caliper_event_params
+      params.require("caliper_event").permit("payload", "eventTime", "time")
+    end
 
 end
