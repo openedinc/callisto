@@ -168,7 +168,7 @@ t.string   "generated_ended_at_time"
   def perform(*args)
     events=CaliperEvent.where :routed==nil
     events.each do |e|
-      result=JSON.parse(e.payload)
+      result= e.payload.is_a?(String) ? JSON.parse(e.payload) : e.payload
       subevents=result["data"]
       subevents.each do |se|
         p "Subevent #{se}"
