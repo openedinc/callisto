@@ -5,6 +5,7 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
     @user = user(:admin)
     @auth_headers = @user.create_new_auth_token
     @caliper_event = caliper_events(:assessment_event)
+    @media_event_item = caliper_events(:media_event_item)
   end
 
   test "should get index" do
@@ -20,6 +21,14 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
   test "should create caliper_event" do
     assert_difference('CaliperEvent.count') do
       post caliper_events_url, params: { caliper_event: { payload: @caliper_event.payload, time: @caliper_event.time } }, headers: @auth_headers
+    end
+
+    assert_redirected_to caliper_event_url(CaliperEvent.last)
+  end
+
+  test "should create caliper_event from media event" do
+    assert_difference('CaliperEvent.count') do
+      post caliper_events_url, "params": { "caliper_event": { "payload": @media_event_item.payload, "eventTime": @media_event_item.time } }, headers: @auth_headers
     end
 
     assert_redirected_to caliper_event_url(CaliperEvent.last)

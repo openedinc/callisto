@@ -37,7 +37,7 @@ You will need to sign in to get your access-token, uid, and client.  These attri
 
 ####Request
 ```
-  curl -XPOST -H Accept: application/json' -H 'Content-Type: application/json' https://www.opencallisto.org/auth/sign_in -d '{"email": "mail@example.com", "password": "password" }'
+  curl -XPOST -i -H 'Accept: application/json' -H 'Content-Type: application/json' https://www.opencallisto.org/auth/sign_in -d '{"email": "mail@example.com", "password": "password" }'
 ```
 ####Response Headers
 ```
