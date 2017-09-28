@@ -165,10 +165,10 @@ t.string   "generated_ended_at_time"
     m
   end
 
-  def perform(*args)
-    events=CaliperEvent.where :routed==nil
-    events.each do |e|
-      result = e.payload.is_a?(String) ? JSON.parse(e.payload) : e.payload
+  def perform(id)
+    event = CaliperEvent.where(id: id).where(routed: nil).take
+    if(event)
+      result = event.payload.is_a?(String) ? JSON.parse(event.payload) : event.payload
       #support array of events or single event
       if result.key?("data")
         result["data"].each do |se|
@@ -179,8 +179,8 @@ t.string   "generated_ended_at_time"
         route_event(result)
       end
 
-      e.routed=true
-      e.save
+      event.routed = true
+      event.save
     end
   end
 
