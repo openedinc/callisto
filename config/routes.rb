@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :caliper_events do
     collection do
       get 'clear'
+      post 'batch'
     end
   end
   resources :grade_events
