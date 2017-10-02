@@ -34,7 +34,6 @@ class CaliperEventsController < ApplicationController
   # POST /caliper_events
   # POST /caliper_events.json
   def create
-    puts "caliper_event_params is #{caliper_event_params.inspect}"
     @caliper_event = CaliperEvent.new(payload: caliper_event_params[:payload])
     respond_to do |format|
       if @caliper_event.save
@@ -47,6 +46,19 @@ class CaliperEventsController < ApplicationController
     end
   end
 
+  # POST /caliper_events/batch.json
+  def batch
+    @caliper_events = CaliperEvent.build_batch(caliper_events_params).each(&:save)
+
+    respond_to do |format|
+      if @caliper_events.all?(&:persisted?)
+        format.json { render :index, status: :created }
+      else
+        first_failed = @caliper_events.first(&:new_record?)
+        format.json { render json: first_failed.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /caliper_events/1
   # PATCH/PUT /caliper_events/1.json
@@ -83,4 +95,7 @@ class CaliperEventsController < ApplicationController
       params.require(:caliper_event).permit!
     end
 
+    def caliper_events_params
+      params.require(:caliper_events).each(&:permit!)
+    end
 end

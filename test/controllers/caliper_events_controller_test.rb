@@ -34,6 +34,20 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to caliper_event_url(CaliperEvent.last)
   end
 
+  test "should create many caliper_event records from a batch request" do
+    payload = [@caliper_event, @media_event_item].map do |event|
+      {
+        payload: event.payload, eventTime: event.time
+      }
+    end
+
+    assert_difference('CaliperEvent.count', 2) do
+      post batch_caliper_events_url, params: { caliper_events: payload }, headers: @auth_headers, as: :json
+    end
+
+    assert_response :created
+  end
+
   test "should show caliper_event" do
     get caliper_event_url(@caliper_event), params:{}, headers: @auth_headers
     assert_response :success
