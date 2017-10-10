@@ -13,7 +13,8 @@ class AssessmentItemEventsController < ApplicationController
       actor_id: params[:actor_id],
       action: params[:action],
       object_id: params[:object_id],
-      generated_id: params[:generated_id]
+      generated_id: params[:generated_id],
+      group_id: params[:group_id]
     ).page(page_params)
   end
 

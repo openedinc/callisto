@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911165751) do
+ActiveRecord::Schema.define(version: 20171009203150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170911165751) do
     t.datetime "generated_ended_at_time"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "group_id"
   end
 
   create_table "assessment_item_events", force: :cascade do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170911165751) do
     t.datetime "generated_started_at_time"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "group_id"
   end
 
   create_table "caliper_events", force: :cascade do |t|

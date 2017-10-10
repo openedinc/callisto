@@ -32,6 +32,7 @@ t.datetime "generated_started_at_time"
     ai=AssessmentItemEvent.new
     ai.actor_id=e["actor"]["id"] if e["actor"]
     ai.action=e["action"] if e["action"]
+    ai.group_id=e["group"]["id"] if e["group"]
     if e["object"]
       ai.object_id=e["object"]["id"]
       ai.is_part_of=e["object"]["is_part_of"]["id"] if e["object"]["is_part_of"]
@@ -136,6 +137,8 @@ t.string   "generated_ended_at_time"
     a=AssessmentEvent.new
     a.actor_id=e["actor"]["id"] if e["actor"]
     a.action=e["action"]
+    a.group_id=e["group"]["id"] if e["group"]
+
     if e["object"]
       a.object_id=e["object"]["id"]
     else
