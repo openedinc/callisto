@@ -159,6 +159,7 @@ t.string   "generated_ended_at_time"
     m=MediaEvent.new
     m.actor_id=e["actor"]["id"] if e["actor"]
     m.action=e["action"]
+    m.group_id=e["group"]["id"] if e["group"]
     if e["object"]
       m.object_id=e["object"]["id"]
     else

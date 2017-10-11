@@ -7,7 +7,8 @@ class MediaEventsController < ApplicationController
     @media_events = MediaEvent.search(
       actor_id: params[:actor_id],
       action: params[:action],
-      object_id: params[:object_id]
+      object_id: params[:object_id],
+      group_id: params[:group_id]
     ).page(page_params)
   end
 
