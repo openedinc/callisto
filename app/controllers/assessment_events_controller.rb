@@ -12,7 +12,7 @@ generated_id - the ID of the assessment attempt, e.g. "https://example.edu/polit
   def index
     @assessment_events = AssessmentEvent.search(
       actor_id: params[:actor_id],
-      action: params[:action],
+      action: params[:action_name],
       object_id: params[:object_id],
       generated_id: params[:generated_id],
       group_id: params[:group_id]
