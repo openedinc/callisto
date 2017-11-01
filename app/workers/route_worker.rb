@@ -33,6 +33,8 @@ t.datetime "generated_started_at_time"
     ai.actor_id=e["actor"]["id"] if e["actor"]
     ai.action=e["action"] if e["action"]
     ai.group_id=e["group"]["id"] if e["group"]
+    ai.event_time=e["eventTime"] if e["eventTime"]
+
     if e["object"]
       ai.object_id=e["object"]["id"]
       ai.is_part_of=e["object"]["is_part_of"]["id"] if e["object"]["is_part_of"]
@@ -92,6 +94,8 @@ t.string   "generated_scored_by"
     o=GradeEvent.new
     o.actor_id=e["actor"]["id"] if e["actor"]
     o.action=e["action"]
+    o.event_time=e["eventTime"] if e["eventTime"]
+
     if e["object"]
       o.object_id=e["object"]["id"]
     else
@@ -138,6 +142,7 @@ t.string   "generated_ended_at_time"
     a.actor_id=e["actor"]["id"] if e["actor"]
     a.action=e["action"]
     a.group_id=e["group"]["id"] if e["group"]
+    a.event_time=e["eventTime"] if e["eventTime"]
 
     if e["object"]
       a.object_id=e["object"]["id"]
@@ -160,6 +165,8 @@ t.string   "generated_ended_at_time"
     m.actor_id=e["actor"]["id"] if e["actor"]
     m.action=e["action"]
     m.group_id=e["group"]["id"] if e["group"]
+    m.event_time=e["eventTime"] if e["eventTime"]
+
     if e["object"]
       m.object_id=e["object"]["id"]
     else
@@ -171,17 +178,20 @@ t.string   "generated_ended_at_time"
 
   def perform(id)
     event = CaliperEvent.where(id: id).where(routed: nil).take
+
     if(event)
       result = event.payload.is_a?(String) ? JSON.parse(event.payload) : event.payload
       #support array of events or single event
       if result.key?("data")
         result["data"].each do |se|
           p "Subevent #{se}"
-          route_event(se)
+          routed_event = route_event(se)
         end
       else
-        route_event(result)
+        routed_event = route_event(result)
       end
+
+      routed_event.update_attribute(:caliper_event_id, event.id) if routed_event.present?
 
       event.routed = true
       event.save
