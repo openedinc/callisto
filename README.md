@@ -157,12 +157,9 @@ Example REST call (all grade events for specified user) :
 ```
   curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
 ```
-## Database Schema
+## Database Schema Generation Rules
 
-Callisto relies on Postgres to store the attributes of each Caliper event individually. This includes columns such as actor_id, action_id, and object_id.
-
-### Database Schema Generation Rules
-As new Caliper events get created the following rules should be followed for generating Postgres tables and their columns.   The rules here are also useful for code the expects to populate rows to the table.
+Callisto relies on Postgres to store the attributes of each Caliper event individually. This includes columns such as actor_id, action_id, and object_id. As new Caliper events get created the following rules should be followed for generating Postgres tables and their columns.   The rules here are also useful for code the expects to populate rows to the table.
 
 Table names (following the ActiveRecord convention) should be the Caliper event name with underscores between words.  For example the Caliper AssessmentEvent has the table name "assessment_events".  
 
