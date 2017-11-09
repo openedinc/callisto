@@ -157,10 +157,31 @@ Example REST call (all grade events for specified user) :
 ```
   curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
 ```
+## Database Schema
+
+Callisto relies on Postgres to store the attributes of each Caliper event individually. This includes columns such as actor_id, action_id, and object_id.
+
+### Database Schema Generation Rules
+As new Caliper events get created the following rules should be followed for generating Postgres tables and their columns.   The rules here are also useful for code the expects to populate rows to the table.
+
+Table names (following the ActiveRecord convention) should be the Caliper event name with underscores between words.  For example the Caliper AssessmentEvent has the table name "assessment_events".  
+
+The columns that must always be present include:
+* id - a unique ID for the row stored in the table.  This is necessary for the ActiveRecord ORM to function.  
+ables for each event should be available with the following rules. Code that populates the table does not have to populate this column
+* event_id - the Caliper id attribute should be represented as event_id in the table to not collide with the id column mentioned above
+* payload - a direct duplicate of the JSON of the original Caliper payload 
+
+The type attribute should NOT be present in the table.  
+
+All other Caliper event attributes SHOULD be present in the table and abide by the following rules:
+* The column names should be the exact Caliper attribute name but converted to underscores when there is more than one word instead of camelCase.  For example the "eventTime" attribute becomes "event_time".  
+* Non-valid identified characters (alphanumeric plus underscore) should be stripped.  So the Caliper event attribute "@context" becomes "context". 
+* For attributes that are embedded inside other attributes, an underscore should be placed in between the parent and child attribute to create a column name.  For example the id attribute inside the actor attribute would be placed in the column "actor_id".
 
 ## Credits
 
-Callisto is a project from [OpenEd, Inc.](http://www.opened.com), a division of ACT Assessment Technologies.
+Callisto is a project from [ACT, Inc.](http://www.act.org).
 
 Current contributors include Adam Blum, Lucas Campbell and Lars Burgess.
 
