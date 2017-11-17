@@ -168,6 +168,7 @@ The columns that must always be present include:
 ables for each event should be available with the following rules. Code that populates the table does not have to populate this column
 * event_id - the Caliper id attribute should be represented as event_id in the table to not collide with the id column mentioned above
 * payload - a direct duplicate of the JSON of the original Caliper payload 
+* client - this column will be the identity of the logged in application sending Caliper events or querying for them. It is used to segment the data by particular groups.  
 
 The Caliper event type attribute should NOT be present in the Postgres table, as it is implied by the table name.  
 
