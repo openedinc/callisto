@@ -38,11 +38,16 @@ t.datetime "generated_started_at_time"
     if e["object"]
       ai.object_id=e["object"]["id"]
       ai.is_part_of=e["object"]["is_part_of"]["id"] if e["object"]["is_part_of"]
+      ai.is_part_of||=e["object"]["isPartOf"]["id"] if e["object"]["isPartOf"]
+
       ai.max_score=e["object"]["max_score"]
     else
       p "No object attribute in AssessmentItem event"
     end
+
     if e["generated"]
+      ai.generated_score = e["generated"]["score"].to_f if e["generated"]["score"]
+
       if e["generated"]["attempt"]
         ai.generated_id=e["generated"]["attempt"]["id"]
         ai.generated_count=e["generated"]["attempt"]["count"]
@@ -105,6 +110,7 @@ t.string   "generated_scored_by"
       o.assignable_id=e["assignable"]["@id"]
       o.assignable_max_score=e["assignable"]["max_score"]
       o.assignable_is_part_of=e["assignable"]["is_part_of"]["@id"] if o.assignable_is_part_of=e["assignable"]["is_part_of"]
+      o.assignable_is_part_of||=e["assignable"]["isPartOf"]["@id"] if o.assignable_is_part_of=e["assignable"]["isPartOf"]
     end
     if e["generated"]
       o.generated_id=e["generated"]["id"]

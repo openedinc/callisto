@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101155302) do
+ActiveRecord::Schema.define(version: 20171129145127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20171101155302) do
     t.string   "group_id"
     t.integer  "caliper_event_id"
     t.datetime "event_time"
+    t.float    "generated_score"
     t.index ["caliper_event_id"], name: "index_assessment_item_events_on_caliper_event_id", using: :btree
   end
 
