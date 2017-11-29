@@ -10,7 +10,7 @@ class CaliperEventTest < ActiveSupport::TestCase
   test "should build a batch of new records" do
     params = 2.times.map do
       {
-        payload: { test_payload_key: "test_payload_value" }
+        data: { test_payload_key: "test_payload_value" }
       }
     end
 
