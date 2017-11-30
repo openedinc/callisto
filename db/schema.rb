@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129222338) do
+ActiveRecord::Schema.define(version: 20171130190723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20171129222338) do
     t.index ["caliper_event_id"], name: "index_assessment_item_events_on_caliper_event_id", using: :btree
     t.index ["generated_id"], name: "index_assessment_item_events_on_generated_id", using: :btree
     t.index ["group_id"], name: "index_assessment_item_events_on_group_id", using: :btree
+    t.index ["is_part_of"], name: "index_assessment_item_events_on_is_part_of", using: :btree
     t.index ["object_id"], name: "index_assessment_item_events_on_object_id", using: :btree
   end
 

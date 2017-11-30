@@ -14,7 +14,8 @@ class AssessmentItemEventsController < ApplicationController
       action: params[:action_name],
       object_id: params[:object_id],
       generated_id: params[:generated_id],
-      group_id: params[:group_id]
+      group_id: params[:group_id],
+      is_part_of: params[:is_part_of]
     ).page(page_params)
   end
 
