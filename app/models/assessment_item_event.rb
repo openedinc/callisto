@@ -1,12 +1,13 @@
 class AssessmentItemEvent < ApplicationRecord
 
-  def self.search(actor_id: nil, action: nil, object_id: nil, generated_id: nil, group_id: nil)
+  def self.search(actor_id: nil, action: nil, object_id: nil, generated_id: nil, group_id: nil, is_part_of: nil)
     unscoped
       .with_actor_id(actor_id)
       .with_action(action)
       .with_object_id(object_id)
       .with_generated_id(generated_id)
       .with_group_id(group_id)
+      .with_is_part_of(is_part_of)
   end
 
   scope :with_actor_id, -> (actor_id) {
@@ -27,6 +28,10 @@ class AssessmentItemEvent < ApplicationRecord
 
   scope :with_group_id, -> (group_id) {
     optional_param_scope(:group_id, group_id)
+  }
+
+  scope :with_is_part_of, -> (is_part_of) {
+    optional_param_scope(:is_part_of, is_part_of)
   }
 
   private
