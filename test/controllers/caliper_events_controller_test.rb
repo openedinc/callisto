@@ -20,7 +20,7 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create caliper_event" do
     assert_difference('CaliperEvent.count') do
-      post caliper_events_url, params: { caliper_event: { payload: @caliper_event.payload, time: @caliper_event.time } }, headers: @auth_headers
+      post caliper_events_url, params: { caliper_event: { data: @caliper_event.payload, time: @caliper_event.time } }, headers: @auth_headers
     end
 
     assert_redirected_to caliper_event_url(CaliperEvent.last)
@@ -28,7 +28,7 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create caliper_event from media event" do
     assert_difference('CaliperEvent.count') do
-      post caliper_events_url, "params": { "caliper_event": { "payload": @media_event_item.payload, "eventTime": @media_event_item.time } }, headers: @auth_headers
+      post caliper_events_url, "params": { "caliper_event": { "data": @media_event_item.payload, "eventTime": @media_event_item.time } }, headers: @auth_headers
     end
 
     assert_redirected_to caliper_event_url(CaliperEvent.last)
@@ -37,7 +37,7 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
   test "should create many caliper_event records from a batch request" do
     payload = [@caliper_event, @media_event_item].map do |event|
       {
-        payload: event.payload, eventTime: event.time
+        data: event.payload, eventTime: event.time
       }
     end
 
@@ -59,7 +59,7 @@ class CaliperEventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update caliper_event" do
-    patch caliper_event_url(@caliper_event), params: { caliper_event: { payload: @caliper_event.payload, time: @caliper_event.time } }, headers: @auth_headers
+    patch caliper_event_url(@caliper_event), params: { caliper_event: { data: @caliper_event.payload, time: @caliper_event.time } }, headers: @auth_headers
     assert_redirected_to caliper_event_url(@caliper_event)
   end
 

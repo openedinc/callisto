@@ -34,7 +34,7 @@ class CaliperEventsController < ApplicationController
   # POST /caliper_events
   # POST /caliper_events.json
   def create
-    @caliper_event = CaliperEvent.new(payload: caliper_event_params[:payload])
+    @caliper_event = CaliperEvent.new(payload: caliper_event_params[:data])
     respond_to do |format|
       if @caliper_event.save
         format.html { redirect_to @caliper_event, notice: 'Caliper event was successfully created.' }
@@ -64,6 +64,8 @@ class CaliperEventsController < ApplicationController
   # PATCH/PUT /caliper_events/1.json
   def update
     respond_to do |format|
+      #caliper spec 1.1 defines payload envelope to be named 'data' so replace for now
+      caliper_event_params[:payload] = caliper_event_params.delete(:data)
       if @caliper_event.update(caliper_event_params)
         format.html { redirect_to @caliper_event, notice: 'Caliper event was successfully updated.' }
         format.json { render :show, status: :ok, location: @caliper_event }
