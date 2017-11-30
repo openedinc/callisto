@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129145127) do
+ActiveRecord::Schema.define(version: 20171129222338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,11 @@ ActiveRecord::Schema.define(version: 20171129145127) do
     t.string   "group_id"
     t.integer  "caliper_event_id"
     t.datetime "event_time"
+    t.index ["actor_id"], name: "index_assessment_events_on_actor_id", using: :btree
     t.index ["caliper_event_id"], name: "index_assessment_events_on_caliper_event_id", using: :btree
+    t.index ["generated_id"], name: "index_assessment_events_on_generated_id", using: :btree
+    t.index ["group_id"], name: "index_assessment_events_on_group_id", using: :btree
+    t.index ["object_id"], name: "index_assessment_events_on_object_id", using: :btree
   end
 
   create_table "assessment_item_events", force: :cascade do |t|
@@ -44,7 +48,11 @@ ActiveRecord::Schema.define(version: 20171129145127) do
     t.integer  "caliper_event_id"
     t.datetime "event_time"
     t.float    "generated_score"
+    t.index ["actor_id"], name: "index_assessment_item_events_on_actor_id", using: :btree
     t.index ["caliper_event_id"], name: "index_assessment_item_events_on_caliper_event_id", using: :btree
+    t.index ["generated_id"], name: "index_assessment_item_events_on_generated_id", using: :btree
+    t.index ["group_id"], name: "index_assessment_item_events_on_group_id", using: :btree
+    t.index ["object_id"], name: "index_assessment_item_events_on_object_id", using: :btree
   end
 
   create_table "caliper_events", force: :cascade do |t|
@@ -69,7 +77,11 @@ ActiveRecord::Schema.define(version: 20171129145127) do
     t.datetime "updated_at",            null: false
     t.integer  "caliper_event_id"
     t.datetime "event_time"
+    t.index ["actor_id"], name: "index_grade_events_on_actor_id", using: :btree
+    t.index ["assignable_id"], name: "index_grade_events_on_assignable_id", using: :btree
     t.index ["caliper_event_id"], name: "index_grade_events_on_caliper_event_id", using: :btree
+    t.index ["generated_id"], name: "index_grade_events_on_generated_id", using: :btree
+    t.index ["object_id"], name: "index_grade_events_on_object_id", using: :btree
   end
 
   create_table "media_events", force: :cascade do |t|
@@ -81,7 +93,10 @@ ActiveRecord::Schema.define(version: 20171129145127) do
     t.string   "group_id"
     t.integer  "caliper_event_id"
     t.datetime "event_time"
+    t.index ["actor_id"], name: "index_media_events_on_actor_id", using: :btree
     t.index ["caliper_event_id"], name: "index_media_events_on_caliper_event_id", using: :btree
+    t.index ["group_id"], name: "index_media_events_on_group_id", using: :btree
+    t.index ["object_id"], name: "index_media_events_on_object_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
