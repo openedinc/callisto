@@ -3,7 +3,7 @@ class CaliperEvent < ApplicationRecord
 
   def self.build_batch(events_params)
     events_params.map do |event_params|
-      self.new(payload: event_params[:data])
+      self.new(event_params.slice(:payload))
     end
   end
 
