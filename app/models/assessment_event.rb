@@ -2,13 +2,14 @@ class AssessmentEvent < ApplicationRecord
 
   validates_uniqueness_of :generated_id
 
-  def self.search(actor_id: nil, action: nil, generated_id: nil, object_id: nil, group_id: nil)
+  def self.search(actor_id: nil, action: nil, generated_id: nil, object_id: nil, group_id: nil, event_time: nil)
     unscoped
       .with_actor_id(actor_id)
       .with_action(action)
       .with_object_id(object_id)
       .with_generated_id(generated_id)
       .with_group_id(group_id)
+      .with_event_time(event_time)
   end
 
   scope :with_actor_id, -> (actor_id) {
@@ -29,6 +30,10 @@ class AssessmentEvent < ApplicationRecord
 
   scope :with_group_id, -> (group_id) {
     optional_param_scope(:group_id, group_id)
+  }
+
+  scope :with_event_time, -> (event_time) {
+    optional_param_scope(:event_time, event_time)
   }
 
   private
