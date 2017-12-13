@@ -6,6 +6,7 @@ one:
   object_id: MyString<%=SecureRandom.uuid[0..7]%>
   generated_id: MyString<%=SecureRandom.uuid[0..7]%>
   generated_ended_at_time: 2017-04-13 16:52:36
+  event_time: 2017-04-13
 
 two:
   actor_id: MyString<%=SecureRandom.uuid[0..7]%>
@@ -13,3 +14,4 @@ two:
   object_id: MyString<%=SecureRandom.uuid[0..7]%>
   generated_id: MyString<%=SecureRandom.uuid[0..7]%>
   generated_ended_at_time: 2017-04-13 16:52:36
+  event_time: 2017-04-20

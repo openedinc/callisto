@@ -105,6 +105,8 @@ Parameters include:
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
 * generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
 * learning_objective - all GradeEvents for a particular learning objective, expressed as a CASE URL
+* is_part_of - the id of the assessment, e.g. "https://www.opened.com/resources/1184041"
+* event_time - the date the assessment item was recorded, e.g. "2017-04-12"
 
 Example REST call (all assessment item events for specified user):
 ```sh
@@ -137,7 +139,7 @@ Parameters include:
 * object_id - the ID of the assessment, e.g. "https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264"
 * generated_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
 * learning_objective - all GradeEvents for a particular learning objective, expressed as a CASE URL
-
+* event_time - the date the assessment was recorded, e.g. "2017-04-12"
 Example REST call (all grade events for specified user) :
 ```
   curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/assessment_events.json?actor_id=https://example.edu/user/554433
@@ -167,14 +169,14 @@ The columns that must always be present include:
 * id - a unique ID for the row stored in the table.  This is necessary for the ActiveRecord ORM to function.  
 ables for each event should be available with the following rules. Code that populates the table does not have to populate this column
 * event_id - the Caliper id attribute should be represented as event_id in the table to not collide with the id column mentioned above
-* payload - a direct duplicate of the JSON of the original Caliper payload 
+* payload - a direct duplicate of the JSON of the original Caliper payload
 * client - this column will be the identity of the logged in application sending Caliper events or querying for them. It is used to segment the data by particular groups.  
 
 The Caliper event type attribute should NOT be present in the Postgres table, as it is implied by the table name.  
 
 All other Caliper event attributes SHOULD be present in the table and abide by the following rules:
 * The column names should be the exact Caliper attribute name but converted to underscores when there is more than one word instead of camelCase.  For example the "eventTime" attribute becomes "event_time".  
-* Non-valid identified characters (alphanumeric plus underscore) should be stripped.  So the Caliper event attribute "@context" becomes "context". 
+* Non-valid identified characters (alphanumeric plus underscore) should be stripped.  So the Caliper event attribute "@context" becomes "context".
 * For attributes that are embedded inside other attributes, an underscore should be placed in between the parent and child attribute to create a column name.  For example the id attribute inside the actor attribute would be placed in the column "actor_id".
 
 ## Credits

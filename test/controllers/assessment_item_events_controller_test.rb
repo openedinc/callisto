@@ -35,6 +35,21 @@ class AssessmentItemEventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should search event by event time" do
+    event_date = "2017-04-13"
+    get assessment_item_events_url, params: { event_time: event_date } ,headers: @auth_headers, as: :json
+    resp = JSON.parse(response.body)
+    assert_equal resp.count, 1
+    assert_equal resp.first['event_time'].to_date.strftime("%Y-%m-%d"), event_date
+    assert_response :success
+
+    event_date = "2012-01-02"
+    get assessment_item_events_url, params: { event_time: event_date } ,headers: @auth_headers, as: :json
+    resp = JSON.parse(response.body)
+    assert_equal resp.count, 0
+    assert_response :success
+  end
+
   test "should update assessment_item_event" do
     patch assessment_item_event_url(@assessment_item_event), params: { assessment_item_event: { action: @assessment_item_event.action, actor_id: @assessment_item_event.actor_id, generated_count: @assessment_item_event.generated_count, generated_id: @assessment_item_event.generated_id, generated_started_at_time: @assessment_item_event.generated_started_at_time, is_part_of: @assessment_item_event.is_part_of, max_score: @assessment_item_event.max_score, object_id: @assessment_item_event.object_id } }, headers: @auth_headers
     assert_redirected_to assessment_item_event_url(@assessment_item_event)

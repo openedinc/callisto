@@ -1,6 +1,6 @@
 class AssessmentItemEvent < ApplicationRecord
 
-  def self.search(actor_id: nil, action: nil, object_id: nil, generated_id: nil, group_id: nil, is_part_of: nil)
+  def self.search(actor_id: nil, action: nil, object_id: nil, generated_id: nil, group_id: nil, is_part_of: nil, event_time: nil)
     unscoped
       .with_actor_id(actor_id)
       .with_action(action)
@@ -8,6 +8,7 @@ class AssessmentItemEvent < ApplicationRecord
       .with_generated_id(generated_id)
       .with_group_id(group_id)
       .with_is_part_of(is_part_of)
+      .with_event_time(event_time)
   end
 
   scope :with_actor_id, -> (actor_id) {
@@ -34,10 +35,20 @@ class AssessmentItemEvent < ApplicationRecord
     optional_param_scope(:is_part_of, is_part_of)
   }
 
+  scope :with_event_time, -> (event_time) {
+    optional_date_scope(:event_time, event_time)
+  }
+
   private
     def self.optional_param_scope(name = nil, value = nil)
       if value.present?
         where("#{name}" => value)
+      end
+    end
+
+    def self.optional_date_scope(name = nil, value = nil)
+      if value.present?
+        where("date(#{name}) = ?", value)
       end
     end
 end

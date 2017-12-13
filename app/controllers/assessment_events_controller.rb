@@ -15,7 +15,8 @@ generated_id - the ID of the assessment attempt, e.g. "https://example.edu/polit
       action: params[:action_name],
       object_id: params[:object_id],
       generated_id: params[:generated_id],
-      group_id: params[:group_id]
+      group_id: params[:group_id],
+      event_time: params[:event_time]
     ).page(page_params)
   end
 
