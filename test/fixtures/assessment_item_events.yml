@@ -9,6 +9,7 @@ one:
   generated_id: MyString
   generated_count: 1
   generated_started_at_time: 2017-03-29 14:09:00
+  event_time: 2017-04-13
 
 two:
   actor_id: MyString
@@ -19,3 +20,4 @@ two:
   generated_id: MyString
   generated_count: 1
   generated_started_at_time: 2017-03-29 14:09:00
+  event_time: 2017-04-20

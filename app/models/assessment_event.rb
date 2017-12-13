@@ -33,13 +33,19 @@ class AssessmentEvent < ApplicationRecord
   }
 
   scope :with_event_time, -> (event_time) {
-    optional_param_scope(:event_time, event_time)
+    optional_date_scope(:event_time, event_time)
   }
 
   private
     def self.optional_param_scope(name = nil, value = nil)
       if value.present?
         where("#{name}" => value)
+      end
+    end
+
+    def self.optional_date_scope(name = nil, value = nil)
+      if value.present?
+        where("date(#{name}) = ?", value)
       end
     end
 end
