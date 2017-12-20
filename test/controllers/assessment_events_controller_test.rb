@@ -38,14 +38,14 @@ class AssessmentEventsControllerTest < ActionDispatch::IntegrationTest
   test "should search event by event time" do
     event_date = "2017-04-13"
     get assessment_events_url, params: { event_time: event_date } ,headers: @auth_headers, as: :json
-    resp = JSON.parse(response.body)
+    resp = JSON.parse(response.body)["assessment_events"]
     assert_equal resp.count, 1
     assert_equal resp.first['event_time'].to_date.strftime("%Y-%m-%d"), event_date
     assert_response :success
 
     event_date = "2012-01-02"
     get assessment_events_url, params: { event_time: event_date } ,headers: @auth_headers, as: :json
-    resp = JSON.parse(response.body)
+    resp = JSON.parse(response.body)["assessment_events"]
     assert_equal resp.count, 0
     assert_response :success
   end

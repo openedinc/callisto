@@ -49,6 +49,7 @@ class CaliperEventsController < ApplicationController
   # POST /caliper_events/batch.json
   def batch
     @caliper_events = CaliperEvent.build_batch(caliper_events_params).each(&:save)
+    @without_pagination = true
 
     respond_to do |format|
       if @caliper_events.all?(&:persisted?)
