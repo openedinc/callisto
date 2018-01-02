@@ -19,7 +19,7 @@ class AssessmentItemEventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create assessment_item_event" do
     assert_difference('AssessmentItemEvent.count') do
-      post assessment_item_events_url, params: { assessment_item_event: { action: @assessment_item_event.action, actor_id: @assessment_item_event.actor_id, generated_count: @assessment_item_event.generated_count, generated_id: @assessment_item_event.generated_id, generated_started_at_time: @assessment_item_event.generated_started_at_time, is_part_of: @assessment_item_event.is_part_of, max_score: @assessment_item_event.max_score, object_id: @assessment_item_event.object_id } }, headers: @auth_headers
+      post assessment_item_events_url, params: { assessment_item_event: { action: "new action", actor_id: "new actor", generated_count: 1, generated_id: "new generated id", generated_started_at_time: Time.now, is_part_of: "new is part of", max_score: 1, object_id: "new object id" } }, headers: @auth_headers
     end
 
     assert_redirected_to assessment_item_event_url(AssessmentItemEvent.last)

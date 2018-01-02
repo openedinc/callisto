@@ -6,7 +6,7 @@ one:
   object_id: MyString
   max_score: 1
   is_part_of: MyString
-  generated_id: MyString
+  generated_id: MyString<%=SecureRandom.uuid[0..7]%>
   generated_count: 1
   generated_started_at_time: 2017-03-29 14:09:00
   event_time: 2017-04-13

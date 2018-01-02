@@ -1,5 +1,7 @@
 class AssessmentItemEvent < ApplicationRecord
 
+  validates_uniqueness_of :generated_id
+
   def self.search(actor_id: nil, action: nil, object_id: nil, generated_id: nil, group_id: nil, is_part_of: nil, event_time: nil)
     unscoped
       .with_actor_id(actor_id)
