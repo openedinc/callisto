@@ -46,17 +46,15 @@ t.datetime "generated_started_at_time"
     end
 
     if e["generated"]
+      ai.generated_id=e["generated"]["id"]
+      ai.generated_count=e["generated"]["count"]
+      ai.generated_started_at_time=e["generated"]["startedAtTime"]
       ai.generated_score = e["generated"]["score"].to_f if e["generated"]["score"]
 
       if e["generated"]["attempt"]
-        ai.generated_id=e["generated"]["attempt"]["id"]
-        ai.generated_count=e["generated"]["attempt"]["count"]
-        ai.generated_started_at_time=e["generated"]["startedAtTime"]
-      else
-        ai.generated_id=e["generated"]["id"]
-        ai.generated_count=e["generated"]["count"]
-        ai.generated_started_at_time=e["generated"]["startedAtTime"]
+        ai.generated_attempt_id=e["generated"]["attempt"]["id"]
       end
+
     else
       p "No generated attribute in AssessmentItem event"
     end

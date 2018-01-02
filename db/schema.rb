@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 20171218214857) do
     t.integer  "caliper_event_id"
     t.datetime "event_time"
     t.float    "generated_score"
+    t.string   "generated_attempt_id"
     t.index ["actor_id"], name: "index_assessment_item_events_on_actor_id", using: :btree
     t.index ["caliper_event_id"], name: "index_assessment_item_events_on_caliper_event_id", using: :btree
+    t.index ["generated_attempt_id"], name: "index_assessment_item_events_on_generated_attempt_id", using: :btree
     t.index ["generated_id"], name: "index_assessment_item_events_on_generated_id", unique: true, using: :btree
     t.index ["group_id"], name: "index_assessment_item_events_on_group_id", using: :btree
     t.index ["is_part_of"], name: "index_assessment_item_events_on_is_part_of", using: :btree
