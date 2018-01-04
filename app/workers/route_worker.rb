@@ -195,7 +195,7 @@ t.string   "generated_ended_at_time"
         routed_event = route_event(result)
       end
 
-      routed_event.update_attribute(:caliper_event_id, event.id) if routed_event.present?
+      routed_event.update_attribute(:caliper_event_id, event.id) if routed_event&.persisted?
 
       event.routed = true
       event.save
