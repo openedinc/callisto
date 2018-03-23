@@ -29,75 +29,166 @@ Code is available on [GitHub](http://github.com/openedinc/callisto)
 
 All Callisto code is open source via [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
+## Development (docker-based)
+
+### Prerequisites
+
+* Docker
+* Docker Compose
+* PostgreSQL 9.6+ (client only)
+
+### Setup
+
+Clone project:
+
+```sh
+git clone https://github.com/openedinc/callisto.git
+cd callisto
+```
+
+Initialize containers:
+
+```sh
+docker-compose up
+```
+
+The first time you run this will take a few minutes, it should output something similar to the following:
+
+```sh
+postgres_1  |  done
+postgres_1  | server stopped
+postgres_1  |
+postgres_1  | PostgreSQL init process complete; ready for start up.
+postgres_1  |
+postgres_1  | LOG:  database system was shut down at 2018-01-30 00:34:47 UTC
+postgres_1  | LOG:  MultiXact member wraparound protections are now enabled
+postgres_1  | LOG:  database system is ready to accept connections
+postgres_1  | LOG:  autovacuum launcher started
+callisto_web_1 exited with code 1
+...
+```
+
+This is expected and only will happen the first time you launch the containers. Cancel the operation with `Ctrl+c`. Next, initialize the database:
+
+```sh
+docker-compose run web bin/rails db:migrate db:seed
+```
+
+This will setup the database tables. You should output like this:
+
+```sh
+...
+== 20180130181022 CreateActiveAdminComments: migrating ========================
+-- create_table(:active_admin_comments)
+   -> 0.0541s
+-- add_index(:active_admin_comments, [:namespace])
+
+$
+
+```
+
+Now restart the web container. The database container should already be running.
+
+```sh
+docker-compose restart web
+docker-compose ps
+```
+
+You should see the following:
+
+```sh
+Name                      Command              State           Ports
+------------------------------------------------------------------------------------
+callisto_postgres_1   docker-entrypoint.sh postgres   Up      5432/tcp
+callisto_web_1        bin/rails s -p 3000             Up      0.0.0.0:3000->3000/tcp
+```
+
+### Create Test User
+
+You can create a test user by running the following script:
+
+```sh
+docker-compose exec web bin/rails user:create["testuser@example.com","password"]
+```
+
+## Development (without docker)
+
+We recommend developing callisto using docker so you can ensure the application will run the same way locally as it does in production. Below are the steps if you'd like to run it without docker.
+
+### Prerequisites
+
+* Ruby 2.4.3
+* PostgreSQL 9.6+
+
+### Setup
+
+Clone project:
+
+```sh
+git clone https://github.com/openedinc/callisto.git
+cd callisto
+```
+
+Run setup script to install gems and prepare the database:
+
+```sh
+bin/setup
+```
+
+Now you can run the project:
+
+```sh
+bin/rails s
+```
+
+### Create Test User
+
+You can create a test user by running the following script:
+
+```sh
+docker-compose exec web bin/rails user:create["testuser@example.com","password"]
+```
+
 ## Endpoints
 
 ### Getting your token
 
 You will need to sign in to get your access-token, uid, and client.  These attributes will be used in all subsequent requests to authenticate your user.
 
-####Request
+#### Request
+
+```sh
+curl -X POST -i \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  "http://localhost:3000/api/v1/auth/sign_in" \
+  -d '{"email": "testuser@example.com", "password": "password" }'
 ```
-  curl -XPOST -i -H 'Accept: application/json' -H 'Content-Type: application/json' https://www.opencallisto.org/auth/sign_in -d '{"email": "mail@example.com", "password": "password" }'
+
+#### Response Headers
+
 ```
-####Response Headers
-```
-  access-token: lW1c60hYkRwAinzUqgLfsQ
-  token-type: Bearer
-  client: W_xCQuggzNOVeCnNZbjKFw
-  expiry: 1426610121
-  uid: testemail@mydomain.com
+access-token: VBU0HTcLQRX6X6o2rnXtmw
+token-type: Bearer
+client: 67iQfwL3rJ_Da7nNXwKhNw
+expiry: 1519412618
+uid: testuser@example.com
 ```
 
 #### Every other request should have headers set similar to below
-```
-  curl -XGET -v -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://www.opencallisto.org/example_endpoint
-```
-### Populating Caliper Events
 
-To store Caliper events in Callisto use the CaliperEvent model Create method.  In the example below the sensor value is just a unique URI (it happens to be a unique URI on opened.com).  The data consists of multiple valid Caliper events.
-
-```
-  curl -H "Content-Type: application/json" -d '{"caliper_event":{"payload":{"sensor": "https://opened.com/sensors/MediaEvent","data":[{"a":"1"},{"b":"2"}]}}}' https://www.opencallisto.org/caliper_events
-```
-
-#### Sample Caliper Event
-
-Below is a sample Caliper event (specifically MediaEvent) based on one of the [IMS Caliper fixtures](https://github.com/IMSGlobal/caliper-common-fixtures-public/blob/public/src/test/resources/fixtures/caliperMediaEvent.json). Of particular note is the learningObjectives attribute as that was not fleshed out in the fixture example. It also uses IMS CASE item URLs for the learningObjective's ID and in an extension attribute called "case_item".   Other parts of the MediaEvent that aren't required are left out for simplicity.  
-
-```json
-{
-
- "@context": "http://purl.imsglobal.org/ctx/caliper/v1/Context",
- "@type": "MediaEvent",
- "actor": {
-   "@id": "https://example.edu/user/554433",
-   "@type": "Person",
-   "dateCreated": "2015-08-01T06:00:00.000Z"
- },
- "action": "Ended",
- "object": {
-   "@id": "https://example.com/super-media-tool/video/1225",
-   "VideoObject",
-   "name": "American Revolution - Key Figures Video",
-   "learningObjectives": [
-     {
-       "@id": "http://opensalt.opened.com/cftree/item/19033",
-       "@type": "LearningObjective",
-       "extensions": {“caseItemURI”: “http://opensalt.opened.com/cftree/item/19033”},
-       "dateCreated": "2015-08-01T06:00:00.000Z"
-     }
-   ]
-  }
-}
+```sh
+curl -XGET -v -H 'Content-Type: application/json' \
+  -H 'access-token: VBU0HTcLQRX6X6o2rnXtmw' \
+  -H 'client: 67iQfwL3rJ_Da7nNXwKhNw' \
+  -H "uid: testemail@example.com" \ http://localhost:3000/api/v1/example_endpoint
 ```
 
 ### Querying for Event Types
 
-Once Caliper events are stored with the "caliper_events/create" method they can be retrieved using various index methods for each event type.
-
 #### AssessmentItemEvents
 
-Various queries on AssessmentItemEvents can be performed with the assessment_item_events.json endpoint.
+Various queries on AssessmentItemEvents can be performed with the `assessment_item_events.json` endpoint.
 
 Parameters include:
 * actor_id - the ID of the assessment item taker, e.g. "https://example.edu/user/554433"
@@ -105,12 +196,15 @@ Parameters include:
 * object_id - the assessment item ID itself, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001"
 * generated_id - the ID of the assessment attempt, e.g. ""https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001""
 * learning_objective - all GradeEvents for a particular learning objective, expressed as a CASE URL
-* is_part_of - the id of the assessment, e.g. "https://www.opened.com/resources/1184041"
-* event_time - the date the assessment item was recorded, e.g. "2017-04-12"
 
 Example REST call (all assessment item events for specified user):
+
 ```sh
-  curl https://opencallisto.org/assessment_item_events.json?actor_id=https://example.edu/user/554433
+curl -H 'Content-Type: application/json' \
+  -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' \
+  -H 'client: W_xCQuggzNOVeCnNZbjKFw' \
+  -H 'uid: testuser@example.com' \
+  https://opencallisto.org/api/v1/assessment_item_events.json?actor_id=https://example.edu/user/554433
 ```
 
 #### GradeEvents
@@ -124,9 +218,14 @@ Parameters include:
 * generated_id - the ID of the assessment result, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
 * learning_objective - all GradeEvents for a particular learning objective, expressed as a CASE URL
 
-Example REST call (all grade events for specified user) :
-```
-  curl https://opencallisto.org/grade_events.json?actor_id=https://example.edu/user/554433
+Example REST call (all grade events for specified user):
+
+```sh
+curl -H 'Content-Type: application/json' \
+  -H 'access-token: lW1c60hYkRwAinzUqgLfsQ'
+  -H 'client: W_xCQuggzNOVeCnNZbjKFw' \
+  -H 'uid: testuser@example.com' \
+  https://opencallisto.org/api/v1/grade_events.json?actor_id=https://example.edu/user/554433
 ```
 
 #### AssessmentEvents
@@ -139,10 +238,15 @@ Parameters include:
 * object_id - the ID of the assessment, e.g. "https://A0501617.opened.com/assessment_bank/0235872d-636a-4467-94d0-5ab6842463ed/assessment/1094264"
 * generated_id - the ID of the assessment attempt, e.g. "https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/attempt/5678/result
 * learning_objective - all GradeEvents for a particular learning objective, expressed as a CASE URL
-* event_time - the date the assessment was recorded, e.g. "2017-04-12"
-Example REST call (all grade events for specified user) :
-```
-  curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/assessment_events.json?actor_id=https://example.edu/user/554433
+
+Example REST call (all grade events for specified user):
+
+```sh
+curl -H 'Content-Type: application/json' \
+  -H 'access-token: lW1c60hYkRwAinzUqgLfsQ'
+  -H 'client: W_xCQuggzNOVeCnNZbjKFw' \
+  -H 'uid: testuser@example.com' \
+  https://opencallisto.org/api/v1/assessment_events.json?actor_id=https://example.edu/user/554433
 ```
 
 #### MediaEvents
@@ -155,10 +259,16 @@ Parameters include:
 * object_id - the URL of the video itself, e.g. "https://example.com/super-media-tool/video/1225"
 * learning_objective - the learning objective of the video, expressed as the CASE URL for the standard, e.g. http://opensalt.opened.com/cftree/item/19033
 
-Example REST call (all grade events for specified user) :
+Example REST call (all grade events for specified user):
+
+```sh
+curl -H 'Content-Type: application/json' \
+  -H 'access-token: lW1c60hYkRwAinzUqgLfsQ'
+  -H 'client: W_xCQuggzNOVeCnNZbjKFw' \
+  -H 'uid: testuser@example.com' \
+  https://opencallisto.org/api/v1/media_events.json?actor_id=https://example.edu/user/554433
 ```
-  curl -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwAinzUqgLfsQ' -H 'client: W_xCQuggzNOVeCnNZbjKFw' -H "uid: testemail@mydomain.com" https://opencallisto.org/media_events.json?actor_id=https://example.edu/user/554433
-```
+
 ## Database Schema Generation Rules
 
 Callisto relies on Postgres to store the attributes of each Caliper event individually. This includes columns such as actor_id, action_id, and object_id. As new Caliper events get created the following rules should be followed for generating Postgres tables and their columns.   The rules here are also useful for code the expects to populate rows to the table.
@@ -178,6 +288,18 @@ All other Caliper event attributes SHOULD be present in the table and abide by t
 * The column names should be the exact Caliper attribute name but converted to underscores when there is more than one word instead of camelCase.  For example the "eventTime" attribute becomes "event_time".  
 * Non-valid identified characters (alphanumeric plus underscore) should be stripped.  So the Caliper event attribute "@context" becomes "context".
 * For attributes that are embedded inside other attributes, an underscore should be placed in between the parent and child attribute to create a column name.  For example the id attribute inside the actor attribute would be placed in the column "actor_id".
+
+## Administration
+
+Callisto includes an admin interface, powered by [active admin](https://activeadmin.info). This interface is enabled by default at the `/admin` path. For example, in local development: http://localhost:3000/admin
+
+### Disabling the admin interface
+
+To disable the admin interface, make sure the `ENABLE_ACTIVE_ADMIN` environment variable is either not set or set it to `'false'`.
+
+### Admin interface security
+
+**NOTE:** Callisto's active admin interface should not be exposed to the public internet for anything other than development / test environments. Production environments should run a copy of the callisto container on a secure network with the admin interface enabled.
 
 ## Credits
 

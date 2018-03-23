@@ -1,5 +1,5 @@
 class MediaEvent < ApplicationRecord
-  def self.search(actor_id: nil,  action: nil, object_id: nil, group_id: nil)
+  def self.search(actor_id: nil, action: nil, edapp_id: nil, object_id: nil, group_id: nil)
     unscoped
       .with_actor_id(actor_id)
       .with_action(action)
@@ -15,6 +15,10 @@ class MediaEvent < ApplicationRecord
     optional_param_scope(:action, action)
   }
 
+  scope :with_edapp_id, -> (edapp_id) {
+    optional_param_scope(:edapp_id, edapp_id)
+  }
+
   scope :with_object_id, -> (object_id) {
     optional_param_scope(:object_id, object_id)
   }
@@ -23,10 +27,4 @@ class MediaEvent < ApplicationRecord
     optional_param_scope(:group_id, group_id)
   }
 
-  private
-    def self.optional_param_scope(name = nil, value = nil)
-      if value.present?
-        where("#{name}" => value)
-      end
-    end
 end
