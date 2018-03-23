@@ -178,10 +178,10 @@ uid: testuser@example.com
 #### Every other request should have headers set similar to below
 
 ```sh
-curl -XGET -v -H 'Content-Type: application/json' \
+curl -H 'Content-Type: application/json' \
   -H 'access-token: VBU0HTcLQRX6X6o2rnXtmw' \
   -H 'client: 67iQfwL3rJ_Da7nNXwKhNw' \
-  -H "uid: testemail@example.com" \ http://localhost:3000/api/v1/example_endpoint
+  -H "uid: testuser@example.com" \ http://localhost:3000/api/v1/example_endpoint
 ```
 
 ### Querying for Event Types
