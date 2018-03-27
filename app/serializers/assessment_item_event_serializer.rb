@@ -10,5 +10,6 @@ class AssessmentItemEventSerializer < ActiveModel::Serializer
     :generated_score,
     :generated_count,
     :generated_started_at_time,
+    :generated_ended_at_time,
     :event_time
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301233542) do
+ActiveRecord::Schema.define(version: 20180323232142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180301233542) do
     t.string "group_id"
     t.datetime "event_time"
     t.string "edapp_id"
+    t.datetime "generated_started_at_time"
     t.index ["action", "event_time", "object_id", "actor_id", "edapp_id"], name: "index_ae_action_event_time_object_id_actor_id_edapp_id", unique: true
     t.index ["actor_id"], name: "index_assessment_events_on_actor_id"
     t.index ["edapp_id"], name: "index_assessment_events_on_edapp_id"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20180301233542) do
     t.float "generated_score"
     t.string "generated_attempt_id"
     t.string "edapp_id"
+    t.datetime "generated_ended_at_time"
     t.index ["action", "event_time", "object_id", "actor_id", "edapp_id"], name: "index_aie_action_event_time_object_id_actor_id_edapp_id", unique: true
     t.index ["actor_id"], name: "index_assessment_item_events_on_actor_id"
     t.index ["edapp_id"], name: "index_assessment_item_events_on_edapp_id"
@@ -105,6 +107,8 @@ ActiveRecord::Schema.define(version: 20180301233542) do
     t.datetime "updated_at", null: false
     t.datetime "event_time"
     t.string "edapp_id"
+    t.datetime "generated_started_at_time"
+    t.datetime "generated_ended_at_time"
     t.index ["action", "event_time", "object_id", "actor_id", "edapp_id"], name: "index_ge_action_event_time_object_id_actor_id_edapp_id", unique: true
     t.index ["actor_id"], name: "index_grade_events_on_actor_id"
     t.index ["assignable_id"], name: "index_grade_events_on_assignable_id"
@@ -122,6 +126,8 @@ ActiveRecord::Schema.define(version: 20180301233542) do
     t.string "group_id"
     t.datetime "event_time"
     t.string "edapp_id"
+    t.datetime "generated_started_at_time"
+    t.datetime "generated_ended_at_time"
     t.index ["action", "event_time", "object_id", "actor_id", "edapp_id"], name: "index_me_action_event_time_object_id_actor_id_edapp_id", unique: true
     t.index ["actor_id"], name: "index_media_events_on_actor_id"
     t.index ["edapp_id"], name: "index_media_events_on_edapp_id"

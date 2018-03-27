@@ -9,6 +9,8 @@ class GradeEventSerializer < ActiveModel::Serializer
     :generated_id,
     :generated_total_score,
     :generated_scored_by,
+    :generated_started_at_time,
+    :generated_ended_at_time,
     :created_at,
     :updated_at
 end

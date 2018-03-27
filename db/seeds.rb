@@ -20,7 +20,8 @@ if Rails.env.development?
       action: actions[index % actions.size],
       object_id: "https://staging.opened.com/resources/#{index}",
       generated_id: "https://staging.opened.com/assessment_run/#{index}",
-      generated_ended_at_time: nil,
+      generated_started_at_time: index.days.ago,
+      generated_ended_at_time: index.days.ago,
       group_id: nil,
       event_time: index.days.ago
     )
@@ -32,7 +33,8 @@ if Rails.env.development?
       is_part_of: "https://staging.opened.com/resources/#{index + 1}",
       generated_id: "https://staging.opened.com/answer/#{index}",
       generated_count: nil,
-      generated_started_at_time: Time.new,
+      generated_started_at_time: index.days.ago,
+      generated_ended_at_time: index.days.ago,
       group_id: "https://staging.opened.com/group/#{index}",
       event_time: index.days.ago,
       generated_score: 0,
@@ -46,6 +48,8 @@ if Rails.env.development?
       assignable_is_part_of: "https://staging.opened.com/resources/#{index + 1}",
       object_id: "https://staging.opened.com/resources/#{index}",
       generated_id: "https://staging.opened.com/answer/#{index}",
+      generated_started_at_time: index.days.ago,
+      generated_ended_at_time: index.days.ago,
       generated_total_score: index * 10,
       event_time: index.days.ago,
       generated_scored_by: "https://staging.opened.com/user/#{index}"
@@ -55,6 +59,8 @@ if Rails.env.development?
       action: actions[index % actions.size],
       object_id: "https://staging.opened.com/resources/#{index}",
       group_id: "https://staging.opened.com/group/#{index}",
+      generated_started_at_time: index.days.ago,
+      generated_ended_at_time: index.days.ago,
       event_time: index.days.ago
     )
   end
