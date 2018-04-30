@@ -6,5 +6,9 @@ class Settings
       @active_admin_enabled == 'true' || @active_admin_enabled == '1'
     end
 
+    def token_lifespan
+      @token_lifespan ||= ENV.fetch('TOKEN_LIFESPAN', 2.weeks)
+    end
+
   end
 end

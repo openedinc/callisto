@@ -35,7 +35,7 @@ All Callisto code is open source via [Apache License 2.0](https://www.apache.org
 
 * Docker
 * Docker Compose
-* PostgreSQL 9.6+ (client only)
+* PostgreSQL 10+ (client only)
 
 ### Setup
 
@@ -113,12 +113,12 @@ docker-compose exec web bin/rails user:create["testuser@example.com","password"]
 
 ## Development (without docker)
 
-We recommend developing callisto using docker so you can ensure the application will run the same way locally as it does in production. Below are the steps if you'd like to run it without docker.
+We *strongly* recommend developing callisto using docker so you can ensure the application will run the same way locally as it does in production. Below are the steps if you'd like to run it without docker.
 
 ### Prerequisites
 
 * Ruby 2.4.3
-* PostgreSQL 9.6+
+* PostgreSQL 10+
 
 ### Setup
 
@@ -146,8 +146,22 @@ bin/rails s
 You can create a test user by running the following script:
 
 ```sh
-docker-compose exec web bin/rails user:create["testuser@example.com","password"]
+bin/rails user:create["testuser@example.com","password"]
 ```
+
+## Administration
+
+Callisto includes an admin interface, powered by [active admin](https://activeadmin.info). If enabled, the interface is available on the `/admin` path. For example, in local development: http://localhost:3000/admin
+
+### Configuration
+Callisto can be configured via environment variables. The following variables are available:
+
+* `TOKEN_LIFESPAN`: Sets the duration of user tokens in seconds. Default is 2 weeks (1209600)
+* `ENABLE_ACTIVE_ADMIN`: Set to `true` to enable the admin interface. Default is `false`. The admin interface is also disabled if this variable is not set.
+
+### Admin interface security
+
+**NOTE:** Callisto's active admin interface should not be exposed to the public internet for anything other than development / test environments. Production environments should run a copy of the callisto container on a secure network with the admin interface enabled.
 
 ## Endpoints
 
@@ -289,18 +303,6 @@ All other Caliper event attributes SHOULD be present in the table and abide by t
 * The column names should be the exact Caliper attribute name but converted to underscores when there is more than one word instead of camelCase.  For example the "eventTime" attribute becomes "event_time".  
 * Non-valid identified characters (alphanumeric plus underscore) should be stripped.  So the Caliper event attribute "@context" becomes "context".
 * For attributes that are embedded inside other attributes, an underscore should be placed in between the parent and child attribute to create a column name.  For example the id attribute inside the actor attribute would be placed in the column "actor_id".
-
-## Administration
-
-Callisto includes an admin interface, powered by [active admin](https://activeadmin.info). This interface is enabled by default at the `/admin` path. For example, in local development: http://localhost:3000/admin
-
-### Disabling the admin interface
-
-To disable the admin interface, make sure the `ENABLE_ACTIVE_ADMIN` environment variable is either not set or set it to `'false'`.
-
-### Admin interface security
-
-**NOTE:** Callisto's active admin interface should not be exposed to the public internet for anything other than development / test environments. Production environments should run a copy of the callisto container on a secure network with the admin interface enabled.
 
 ## Credits
 
