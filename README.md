@@ -159,6 +159,13 @@ Callisto can be configured via environment variables. The following variables ar
 * `TOKEN_LIFESPAN`: Sets the duration of user tokens in seconds. Default is 2 weeks (1209600)
 * `ENABLE_ACTIVE_ADMIN`: Set to `true` to enable the admin interface. Default is `false`. The admin interface is also disabled if this variable is not set.
 
+### Create Admin User
+You can create an admin user by running the following script:
+
+```sh
+bin/rails user:create_admin["testadmin@example.com","supersecret"]
+```
+
 ### Admin interface security
 
 **NOTE:** Callisto's active admin interface should not be exposed to the public internet for anything other than development / test environments. Production environments should run a copy of the callisto container on a secure network with the admin interface enabled.
