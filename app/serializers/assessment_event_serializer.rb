@@ -1,8 +1,7 @@
-class AssessmentEventSerializer < ActiveModel::Serializer
+class AssessmentEventSerializer < BaseSerializer
   attributes :id,
     :actor_id,
     :action,
-    :object_id,
     :generated_id,
     :generated_started_at_time,
     :generated_ended_at_time,

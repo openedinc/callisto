@@ -1,8 +1,7 @@
-class GradeEventSerializer < ActiveModel::Serializer
+class GradeEventSerializer < BaseSerializer
   attributes :id,
     :actor_id,
     :action,
-    :object_id,
     :assignable_id,
     :assignable_max_score,
     :assignable_is_part_of,

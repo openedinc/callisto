@@ -1,8 +1,7 @@
-class AssessmentItemEventSerializer < ActiveModel::Serializer
+class AssessmentItemEventSerializer < BaseSerializer
   attributes :id,
     :actor_id,
     :action,
-    :object_id,
     :max_score,
     :is_part_of,
     :generated_attempt_id,
