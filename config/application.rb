@@ -35,7 +35,7 @@ module Callisto
     if Settings.active_admin_enabled?
       config.middleware.use ActionDispatch::Flash
       config.middleware.use Rack::MethodOverride
-      config.middleware.insert_after ActiveRecord::Migration::CheckPending, ActionDispatch::Cookies
+      config.middleware.use ActionDispatch::Cookies
       config.middleware.insert_after ActionDispatch::Cookies, ActionDispatch::Session::CookieStore
     end
   end
