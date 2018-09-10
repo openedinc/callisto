@@ -1,26 +1,15 @@
-FROM ruby:2.4.3-slim
+FROM ruby:2.5.1-alpine as builder
 
-RUN apt-get update -qq \
-  && apt-get upgrade -y \
-	&& apt-get install -y --no-install-recommends wget
+RUN apk update && apk upgrade
+RUN apk --update add --no-cache \
+  build-base \
+  ca-certificates \
+  git \
+  postgresql-dev \
+  ruby-dev \
+  tzdata
 
-RUN wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-  apt-key add -
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" | \
-  tee /etc/apt/sources.list.d/postgresql.list
-RUN wget -qO - https://deb.nodesource.com/setup_8.x | bash -
-RUN export DEBIAN_FRONTEND=noninteractive && \
-  apt-get update -qq \
-	&& apt-get install -y --no-install-recommends \
-    gcc \
-    libc6-dev \
-    libpq-dev \
-    make \
-    nodejs \
-    postgresql-client-9.6 \
-  && apt-get remove -y \
-    wget \
-  && rm -rf /var/lib/apt/lists/*
+ENV TZ UTC
 
 RUN gem install bundler --no-ri --no-rdoc
 RUN mkdir /app
@@ -28,7 +17,23 @@ WORKDIR /app
 ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
 RUN bundle install --jobs 20 --retry 5
+
+FROM ruby:2.5.1-alpine
+
+RUN apk update && apk upgrade
+RUN apk --update add --no-cache \
+  ca-certificates \
+  nodejs-current \
+  postgresql-dev \
+  tzdata \
+  yarn
+
+ENV TZ UTC
+
+WORKDIR /app
 COPY . /app
+COPY --from=builder $GEM_HOME $GEM_HOME
+RUN bin/rails assets:precompile
 
 ENTRYPOINT ["./bin/docker-entrypoint.sh"]
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]

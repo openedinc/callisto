@@ -71,7 +71,7 @@ callisto_web_1 exited with code 1
 This is expected and only will happen the first time you launch the containers. Cancel the operation with `Ctrl+c`. Next, initialize the database:
 
 ```sh
-docker-compose run web bin/rails db:migrate db:seed
+docker-compose run web bin/rails db:setup db:migrate db:seed
 ```
 
 This will setup the database tables. You should output like this:
@@ -117,7 +117,7 @@ We *strongly* recommend developing callisto using docker so you can ensure the a
 
 ### Prerequisites
 
-* Ruby 2.4.3
+* Ruby 2.5.x
 * PostgreSQL 10+
 
 ### Setup

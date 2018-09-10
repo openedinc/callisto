@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.3'
+ruby '2.5.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -31,6 +31,7 @@ gem 'active_model_serializers', '~> 0.10'
 
 # Administrative Interface
 gem 'activeadmin'
+gem 'sprockets', '~>3.7.2' # Fix for CVE-2018-3760
 
 # Devise for authentication
 gem 'devise_token_auth'

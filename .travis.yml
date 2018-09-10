@@ -1,12 +1,20 @@
-language: ruby
-dist: trusty
-rvm:
-  - 2.4.3
-cache: bundler
+sudo: required
+language: generic
 services:
-  - postgresql
-install:
-  - bin/bundle --without development
-before_script:
-  - bin/rails db:setup
-script: bin/rails spec
+  - docker
+addons:
+  apt:
+    packages:
+      - docker-ce
+before_install:
+  - sudo /etc/init.d/postgresql stop
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+env:
+  - ENABLE_ACTIVE_ADMIN="false"
+script:
+  - docker-compose build
+  - docker-compose run web bin/rails db:setup db:test:prepare
+  - docker-compose run web bin/rails spec

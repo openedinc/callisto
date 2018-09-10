@@ -27,6 +27,8 @@ default: &default
   #   log, notice, warning, error, fatal, and panic
   # Defaults to warning.
   min_messages: log
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  username: <%= ENV['PGUSERNAME'] || 'postgres' %>
 
 development:
   <<: *default

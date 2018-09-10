@@ -1,10 +1,7 @@
 version: '3'
 services:
-  postgres:
-    environment:
-      POSTGRES_PASSWORD:
-      POSTGRES_DB: callisto_development
-    image: postgres:10
+  db:
+    image: postgres:10-alpine
     expose:
       - 5432
     volumes:
@@ -13,20 +10,16 @@ services:
     build: .
     stdin_open: true
     tty: true
-    volumes:
-      - .:/app
     ports:
       - "3000:3000"
     depends_on:
-      - postgres
+      - db
     links:
-      - postgres
+      - db
     environment:
       PORT: 3000
-      DATABASE_URL: postgres://postgres:@postgres:5432/callisto_development
+      DB_HOST: db
       ENABLE_ACTIVE_ADMIN: "true"
-      RACK_ENV: development
-      RAILS_ENV: development
       RAILS_LOG_TO_STDOUT: "true"
 volumes:
   postgres-data:
